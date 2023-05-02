@@ -1,0 +1,53 @@
+@import url('./asset.css');
+
+* {
+    --icon-bd: solid 1px rgba(255, 255, 255, 0.348);
+    --icon-hv: rgba(255, 255, 255, 0.133); 
+    --icon-txt: white;
+    --icon-txt-shadow: 0px 1px 2px black ;
+}
+
+.wrap {
+    position: absolute;
+
+    width: 100%;
+    height: 95%;
+
+    padding-top:    0.5%;
+    padding-bottom: 1%;
+    padding-right:  1%;
+}
+
+tr {
+    width: 100%;
+    height: 12.5%;
+}
+
+td {
+    width: 5.8%;
+}
+
+.icon {
+    width: 98%;
+
+    color: var(--icon-txt);
+    text-shadow: var(--icon-txt-shadow);
+    border: var(--icon-bd);
+    border-color: #0000;
+}
+
+.icon:hover {
+    border: var(--icon-bd);
+    background-color: var(--icon-hv);
+}
+
+img {
+    display: block;
+    margin: auto;
+    margin-bottom: 4%;
+    width: 60%;
+}
+
+p {
+    text-align: center;
+}

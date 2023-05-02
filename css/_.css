@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+body {
+    background-color: rgba(227, 208, 195, 0.399);
+}
+
+/*************** base class *****************/
+
+.frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100vw;
+    max-width: 1000px;
+    height: 64vw;
+    max-height: 600px;
+
+    background-size: cover;
+    overflow: hidden;
+}
+
+/******************* main ******************/ 
+
+.main {
+    background-color: rgba(64, 147, 255, 0.848);
+}
+
+.title_main {
+    position: relative;
+    top: 4%;
+    text-align: center;
+    color: rgb(251, 251, 251);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: min(5dvw, 240%);
+}
+
+.btn_slide {
+    position: absolute;
+    top: 25%;
+    width: 6%;
+    height: 50%;
+    cursor: pointer;
+
+    background-color: rgba(0, 255, 255, 0.595);
+}
+
+.wrap_btn {
+    position: absolute;
+
+    top: 21%;
+    left: 30%;
+    height: 60%;
+
+    display: flex;
+    flex-flow: row;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: nowrap;
+    
+    overflow: hidden;
+}
+
+.wrap_btn_main {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_main {
+    display: inline-block; 
+    margin: auto;
+    width: 90%;
+    height: 90%;
+    
+    box-sizing: border-box;
+    border: solid min(1.5dvw, 15px) black;
+    border-radius: 30%;
+    
+    background-color: white;
+    cursor: pointer;
+    
+    text-align: center;
+}
+
+.btn_option {
+    position: absolute;
+    top: 2.5%;
+    right: 8.5%;
+    width: 5.5%;
+
+    cursor: pointer;
+}
+
+.btn_help {
+    position: absolute;
+    top: 2.5%;
+    bottom: 8%;
+    right: 1.5%;
+    
+    width: 5.5%;
+
+    cursor: pointer;
+    
+}
+
+/****************** stage select **************/
+
+.select_map {
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('../img/sky.jpg');
+
+    animation-name: appear;
+    animation-duration: 0.15s;    
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.wrap_btn_stage {
+    width: 14%;
+    height: 14%;
+}
+ 
+.btn_stage {
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    border: solid min(0.6dvw, 6px) rgba(0, 0, 0, 0.844);
+    border-radius: 20%;
+    background-color: rgba(124, 189, 245, 0.497);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(38, 38, 38);
+    cursor: pointer;
+    text-align: center;
+    font-size: min(5dvw, 330%);
+}
+
+.icon_lock {
+    width: 60%;
+    height: 60%;
+    background-image: url('/img/lock.png');
+    background-size: cover;
+}
+
+
+/*********************** stage ********************/
+
+.stage {
+    background-color: aliceblue;
+    z-index: 100;
+}
+
+/*********************** play *********************/
+
+.ball {
+    display: inline-block;
+    position: absolute;
+    width: 2.2%;
+    height: 3.55%;
+    
+    box-sizing: border-box;
+    background-color: yellow;
+    box-shadow: 0 0 0 min(0.4dvw, 4px) #000 inset; 
+
+    border-radius: 100%;
+    z-index: 5;
+
+} 
+
+/*********************** maker *********************/
+
+.maker {
+
+    background-color: rgb(84, 192, 90);
+    z-index: 100;
+}
+
+/*********************** help **********************/
+
+.help {
+    display: none;
+
+    height: 60%;
+
+    background-color: rgba(255, 253, 249, 0.874);
+    z-index: 100;
+}
+
+/*********************** blocks ********************/
+
+.block {
+    box-sizing: border-box;
+    position: absolute;
+
+    width: 4%;
+    height: 6.25%;
+
+    border: solid min(0.2dvw, 2px) black; 
+    border-radius: 10%;
+}
+
+.lightning { 
+    
+    /* box-shadow: 0 0 0 min(0.2dvw, 2px) #000 inset; */
+    
+    background-color: #f0f0f0;
+}
+
+
+

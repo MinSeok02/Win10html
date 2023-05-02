@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  --theme-color: rgba(32, 32, 32, 0.92);
+  --hover-color: rgba(255, 255, 255, 0.1);
+  
+  --blue-filter: invert(51%) sepia(86%) saturate(562%) hue-rotate(176deg) brightness(94%) contrast(89%);
+  --white-filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(115deg) brightness(105%) contrast(108%); 
+  
+}

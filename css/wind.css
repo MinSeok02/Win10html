@@ -1,0 +1,197 @@
+@import url('./asset.css');
+
+* {
+    --nav-bg: rgb(205, 205, 205);
+    --nav-hv: rgb(184, 184, 184);
+}
+
+.wrap {
+    position: absolute;
+
+    width:  min(50vh, calc(50vw / 1.7));
+    height: min(85vh, calc(85vw / 1.7));
+
+    box-shadow: 0px 0px 2px 1px rgb(65, 65, 65);
+
+    z-index: 5;
+    overflow: hidden;
+}
+
+/***********************************************/
+
+.nav {
+    height: 5%;
+
+    background-color: var(--nav-bg);
+
+    display: flex;
+    align-items: stretch;
+}
+
+.nav > .btn {
+    height: 100%;
+    width: min(5vh, calc(5vw / 1.7));
+
+    display: flex;
+    justify-content: center;
+}
+
+.nav > .btn:hover {
+    background-color: var(--nav-hv);
+}
+
+.nav > .btn:last-child:hover {
+    background-color: rgb(231, 17, 35);
+}
+
+.nav > .btn > img {
+    height: 100%;
+}
+
+.btns > .btn {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+.btns > .btn > img {
+    margin: auto;
+    height: 35%;
+}
+
+/***********************************************/
+
+iframe {
+    height: 100%;
+    width: 100%;
+
+    border: none;
+}
+
+/***********************************************/
+
+.mani { 
+    
+    height: 4.5vh; 
+    width: 100%;
+    box-shadow: 0px 0px 3px 1px rgb(175, 175, 175);
+    background-color: white;
+
+    padding-left: 1vh ;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
+
+.mani > .btn { 
+    height: 100%;
+    width: 5vh;
+
+    display: flex;
+}
+
+.mani > .btn > img { 
+
+    margin: auto;
+    height: 45%;
+
+}
+
+.mani > .bar {
+    height: 70%;
+    width: 100%;
+
+    background-color: white;
+    box-shadow: 0px 0px 2px 1px rgba(214, 214, 214, 0.71);
+
+    margin: 1vh;
+    border: none;    
+    border-radius: 20px;
+
+    padding-left: 5vh;
+    font-size: 1.6vh;
+}
+
+.mani > .bar:hover {
+    box-shadow: 0px 0px 2px 1px rgba(159, 159, 159, 0.71);
+}
+
+.mani > .bar:focus {
+    outline: none;
+}
+
+/***********************************************/
+
+.resizer {
+    --width: 3px;
+    --size: 6px;
+
+    position: absolute;
+}
+
+.top {
+    top: 0;
+    height: var(--width);
+    width:  100%;
+    cursor:ns-resize;
+}
+
+.bottom {
+    bottom: 0;
+    height: var(--width);
+    width:  100%;
+    cursor:ns-resize;
+}
+
+.left {
+    top:  0;
+    left: 0;
+    width:  var(--width);
+    height: 100%;
+    cursor: ew-resize;
+}
+
+.right {
+    top:  0;
+    right: 0;
+    width:  var(--width);
+    height: 100%;
+    cursor: ew-resize;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    width: var(--size);
+    height: var(--size);
+    cursor: nw-resize;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    width: var(--size);
+    height: var(--size);
+    cursor: ne-resize;
+}
+
+.bottom-left {
+    left: 0;
+    bottom: 0;
+    width: var(--size);
+    height: var(--size);
+    cursor: sw-resize;
+}
+
+.bottom-right {
+    right: 0;
+    bottom: 0;
+    width: var(--size);
+    height: var(--size);
+    cursor: se-resize;
+}
