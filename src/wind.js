@@ -34,50 +34,65 @@ function move(event, target, body = target) {
     }
 }; 
 
+
+
+/*
+1. 드래그 가능
+2. 리사이즈 가능
+3. 최소화, 최대화, 닫기 
+4. 포커싱
+
+window class {
+    iframe src, 
+    
+}
+ */
+
 class Window extends HTMLElement {
     constructor() {
         super(); 
 
         this.idx = document.resource.WinClass.length; 
-        console.log(document.resource.WinClass);
 
-        let wrap = C('div', { class:'wrap' });
+        this.wrap       = C('div', { class:'wrap' });
+        this.wrap.cover = C('div', { class:'cover'});
+
+        this.nav = C('div', { class:'nav'  }); 
         
-        window.addEventListener('resize', ()=>{
-            if(wrap.style.left.slice(-1) == '%') return;
+        window.addEventListener('resize', ()=> { this.fix() });
 
-            let wrect = document.resource.Windows.getBoundingClientRect();
-            let x = parseInt(wrap.style.left.slice(0, -2)) / wrect.width  * 100;
-            let y = parseInt(wrap.style.top.slice(0, -2))  / wrect.height * 100;
+        this.nav.onmousedown = (event)=>{ move(event, this.nav, this.wrap) };
 
-            wrap.style.left = x + '%';
-            wrap.style.top  = y + '%';
-        });
+        this.close = C('div', 
+        { 
+            class: 'btn',
+            onmouseover: "this.firstChild.style.filter = 'var(--white-filter)'", 
+            onmouseout:  "this.firstChild.style.filter = 'none'"
+        }, 
+        [ C('img', { src:'../img/close.png' }) ]);
 
-        let nav   = C('div', { class:'nav'  }); 
-        wrap.cover = C('div', { class:'cover'});
-        nav.onmousedown = (event)=>{ move(event, nav, wrap) };
+        this.maximize = C('div', 
+        { 
+            class: 'btn',
+            onclick: 'alert()', 
+        }, 
+        [ C('img', { src:'../img/maximize.png' }) ]);
+        
+        this.minimize = C('div', 
+        { 
+            class: 'btn',
+            style: 'margin-left:auto;',
+            onclick: 'alert()', 
+        }, 
+        [ C('img', { src:'../img/minimize.png' }) ]);
 
-        let img = C('img', {src:'../img/close.png'}); 
-        let close = C('div', { class: 'btn' }, [img]);
-        close.onmouseover = ()=>{ img.style.filter = 'var(--white-filter)' }
-        close.onmouseout  = ()=>{ img.style.filter = 'none' }
-
-        let iframe = C('iframe', { src: '../test.html'});
-        iframe.onload = ()=>{ iframe.contentDocument.querySelector('head').appendChild(C('script', { src: '../src/iframe.js'})) };
+        this.iframe = C('iframe', { src: '../test.html'});
+        this.iframe.onload = ()=>{ this.iframe.contentDocument.querySelector('head').appendChild(C('script', { src: '../src/iframe.js'})) };
          
-        A(nav, [
-            C('div', { class: 'btn', style:'margin-left:auto' },
-                [C('img', {src:'../img/minimize.png'})]),
-            C('div', { class: 'btn'},
-                [C('img', {src:'../img/maximize.png'})]),
-            close
-        ]);
+        A(this.nav, [this.minimize, this.maximize, this.close]);
 
-        A(wrap, 
+        A(this.wrap, 
         [
-            nav, wrap.cover,
-            iframe, 
             C('div', {class:'resizer top'}),
             C('div', {class:'resizer bottom'}),
             C('div', {class:'resizer left'}),
@@ -86,19 +101,31 @@ class Window extends HTMLElement {
             C('div', {class:'resizer top-right'}),
             C('div', {class:'resizer bottom-left'}),
             C('div', {class:'resizer bottom-right'}),
+            this.nav, 
+            this.wrap.cover,
+            this.iframe, 
         ]);
          
         A(this.attachShadow({mode : 'open'}),
         [
             C('link', { rel:'stylesheet', href:'./css/wind.css'}),
-            wrap, 
+            this.wrap, 
         ]);
+    }
+
+    fix() {
+        if(this.wrap.style.left.slice(-1) == '%') return;
+
+        let wrect = document.resource.Windows.getBoundingClientRect();
+        let x = parseInt(this.wrap.style.left.slice(0, -2)) / wrect.width  * 100;
+        let y = parseInt(this.wrap.style.top.slice(0, -2))  / wrect.height * 100;
+
+        this.wrap.style.left = x + '%';
+        this.wrap.style.top  = y + '%';
     }
 }
 
 customElements.define('window-class', Window); 
-
-
 
 //     minimize window
 //     max.onclick = function() {

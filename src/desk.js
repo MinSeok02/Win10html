@@ -1,17 +1,12 @@
 
-function select() {
-    if (this.select) {
-        alert();        
-    } else {
-        this.select = true; 
-        this.style.border = 'var(--icon-bd)';
-        this.style.backgroundColor = 'var(--icon-hv)';
-    }
-}
 
 function unselect(icon) {
     icon.select = false;
     icon.style = "";
+}
+
+function createWindow() {
+    alert();
 }
 
 class Desktop extends HTMLElement{
@@ -19,7 +14,7 @@ class Desktop extends HTMLElement{
         super();
         
         this.wrap = C('table', { class:'wrap' }); 
-        this.icon = [];
+        this.selected = [];
 
         A(this.attachShadow({mode : 'open'}),
         [
@@ -36,13 +31,10 @@ class Desktop extends HTMLElement{
         }
 
         document.addEventListener('mousedown', (event)=>{
-
-            console.log(event.target)
-
-
-            
-            for(let i of this.icon) {
-                unselect(i);
+            if(event.target != this.wrap) {
+                for (let i of this.selected) {
+                    unselect(i);
+                }
             }
         })
     }
@@ -52,9 +44,21 @@ class Desktop extends HTMLElement{
         let img   = C('img', { src:img_src  }); 
         let title = C('p');  title.innerHTML += name; 
 
-        icon.onclick = select; 
+        icon.onclick = ()=>{
 
-        this.icon.push(icon);
+            for (let i of this.selected) { unselect(i) } 
+
+            icon.style.border = 'var(--icon-bd)';
+            icon.style.backgroundColor = 'var(--icon-hv)';
+            this.selected.push(icon);
+
+            icon.addEventListener('click', createWindow);
+
+            setTimeout(()=>{
+                icon.removeEventListener('click', createWindow); 
+            }, 1000); 
+        }; 
+
         A(icon, [img, title]);
         return this.at(x, y).appendChild(icon);
     }

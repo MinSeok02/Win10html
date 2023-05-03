@@ -1,51 +1,33 @@
-function unfold() {
-    this.value = 
-    setTimeout(()=>{
-        this.style.animation       = 'unfold 0.15s';
-        this.style.backdropFilter  = 'blur(15px)';
-        this.style.backgroundColor = 'var(--fold-bg)';
-        this.style.boxShadow       = 'var(--fold-sh)';
+function stupDown(event) {
+    if (event.target == document.resource.TaskBar ||
+        event.target == document.resource.StartUp ) {
+        return;
+    }
 
-        setTimeout(()=>{ this.style.width = '40%' }, 120);
-    }, 750);
-};
-
-function fold() {
-    clearTimeout(this.value);
-    this.style.animation = 'fold 0.1s';
-
-    setTimeout(()=>{ 
-        this.style.width = '7.5%' 
-        this.style.backdropFilter  = '';
-        this.style.backgroundColor = '';
-        this.style.boxShadow       = '';
-    }, 60);
-};
+    if (document.resource.StartUp.visible) {
+        document.resource.StartUp.show();
+    }
+}
 
 class Startup extends HTMLElement {
     constructor() {
         super();
-        this.visible = false;
 
+        this.visible = false;
         this.wrap = C('div', { class:'wrap' });
 
-        A(this.attachShadow({mode : 'open'}),
+        this.li = 
         [
-            C('link', { rel:'stylesheet', href:'./css/stup.css'}),
-            this.wrap
-        ])
-
-        this.li = [
             C('div', { class: 'li1' }),
             C('div', { class: 'li2' }),
             C('div', { class: 'li3' }),
         ]
-        
-        this.li[0].onmouseenter = unfold;
-        this.li[0].onmouseleave = fold;
-        this.li[0].unfold = unfold; 
 
         A(this.wrap, [...this.li]);
+
+        this.li[0].onmouseenter = unfold;
+        this.li[0].onmouseleave = fold;
+        this.li[0].unfold       = unfold; 
 
         A(this.li[0], [
             C('div', { class: 'btn' }, [C('img', { src:'../img/power.png'})]),
@@ -60,37 +42,32 @@ class Startup extends HTMLElement {
         let c = this.li[0].children;
         for(let i in t) { c[i].appendChild(C('p')).textContent = t[i]; }
 
-        document.addEventListener('mousedown', (event)=>{
-            if (event.target == document.resource.TaskBar ||
-                event.target == document.resource.StartUp ) {
-                return;
-            }
+        document.addEventListener('mousedown', stupDown);
 
-            if (document.resource.StartUp.visible) {
-                document.resource.StartUp.show();
-            }
-        })
+        A(this.attachShadow({mode : 'open'}),
+        [
+            C('link', { rel:'stylesheet', href:'./css/stup.css'}),
+            this.wrap
+        ])
     }
 
-    addGroup() {
-        let elem = document.importNode(I('group_template').content, true);
-        let slot = elem.querySelector('.slot');
-        let img  = elem.querySelector('img');
-        this.li[2].appendChild(elem);
-        slot.onmouseover = ()=>{ img.style.display = 'block' };
-        slot.onmouseout  = ()=>{ img.style.display = 'none'  };
+    addGroup(name) {
+        let txt  = C('p'); txt.textContent = name;
+        let slot = C('div', { class:'slot' }, [ txt, C('img', { src: './img/hamburger2.png'}) ]);
+        slot.onmouseover = ()=>{ slot.lastChild.style.display = 'block' };
+        slot.onmouseout  = ()=>{ slot.lastChild.style.display = 'none'  };
+        A(this.li[2], [C('div', { class:'group' },[ slot, C('div', { class:'content'})]) ]);
     }
 
     addStupBtn() {
         let content = this.li[2].getElementsByClassName('content');
-        let last    = content[content.length - 1];
-
-        last.appendChild(C('div', {class:'btn'}));
+        content[content.length - 1].appendChild(C('div', {class:'btn'}));
     }
 
-    addList() {
-        let elem = document.importNode(I('list_template').content, true);
-        this.li[1].appendChild(elem);
+    addList(txt) {
+        let list = C('p', { class:'list' });
+        list.textContent = txt;
+        this.li[1].appendChild(list);
     }
 
     show() {
@@ -122,3 +99,27 @@ class Startup extends HTMLElement {
 }
 
 customElements.define('start-up', Startup);
+
+function unfold() {
+    this.value = 
+    setTimeout(()=>{
+        this.style.animation       = 'unfold 0.15s';
+        this.style.backdropFilter  = 'blur(15px)';
+        this.style.backgroundColor = 'var(--fold-bg)';
+        this.style.boxShadow       = 'var(--fold-sh)';
+
+        setTimeout(()=>{ this.style.width = '40%' }, 120);
+    }, 750);
+};
+
+function fold() {
+    clearTimeout(this.value);
+    this.style.animation = 'fold 0.1s';
+
+    setTimeout(()=>{ 
+        this.style.width = '7.5%' 
+        this.style.backdropFilter  = '';
+        this.style.backgroundColor = '';
+        this.style.boxShadow       = '';
+    }, 60);
+};
