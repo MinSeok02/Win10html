@@ -27,9 +27,12 @@ function move(event, target, body = target) {
 
     document.addEventListener('mousemove', eventFn); 
 
+    body.cover.style.display = "block"; 
+
     target.onmouseup = ()=> {
         document.removeEventListener('mousemove', eventFn);
         target.onmouseup = null;
+        body.cover.style.display = "none"; 
     }
 }; 
 
@@ -39,7 +42,7 @@ class Window extends HTMLElement {
         let wrap = C('div', { class:'wrap' });
         wrap.style.left = '10px';
         wrap.style.top  = '10px';
-
+        
         window.addEventListener('resize', ()=>{
             if(wrap.style.left.slice(-1) == '%') return;
 
@@ -51,7 +54,8 @@ class Window extends HTMLElement {
             wrap.style.top  = y + '%';
         });
 
-        let nav  = C('div', { class:'nav'  }); 
+        let nav   = C('div', { class:'nav'  }); 
+        wrap.cover = C('div', { class:'cover'});
         nav.onmousedown = (event)=>{ move(event, nav, wrap) };
 
         let img = C('img', {src:'../img/close.png'}); 
@@ -72,8 +76,8 @@ class Window extends HTMLElement {
 
         A(wrap, 
         [
-            nav,
-            iframe,
+            nav, wrap.cover,
+            iframe, 
             C('div', {class:'resizer top'}),
             C('div', {class:'resizer bottom'}),
             C('div', {class:'resizer left'}),
