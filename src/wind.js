@@ -1,24 +1,22 @@
 
-// 마우스 포인터 위치
-function getMousePos(event) {
-    let base = document.resource.Windows.getBoundingClientRect(); 
-    return { x:(event.clientX - base.left), y:(event.clientY  - base.top) }; 
-}
-
-// 윈도우 위치
-function getObjectPos(obj) {
-    let base  = document.resource.Windows.getBoundingClientRect(); 
-    let tRect = obj.getBoundingClientRect();
-    return { x:(tRect.left - base.left), y:(tRect.top  - base.top) }; 
-}
-
-function objmove(event, obj, shift) {
-    let pos = getMousePos(event);
-    obj.style.left  = (pos.x - shift.x) + 'px';
-    obj.style.top   = (pos.y - shift.y) + 'px';
-};
-
 function move(event, target, body = target) {
+
+    function getMousePos(event) {
+        let base = document.resource.Windows.getBoundingClientRect(); 
+        return { x:(event.clientX - base.left), y:(event.clientY  - base.top) }; 
+    }
+    
+    function getObjectPos(obj) {
+        let base  = document.resource.Windows.getBoundingClientRect(); 
+        let tRect = obj.getBoundingClientRect();
+        return { x:(tRect.left - base.left), y:(tRect.top  - base.top) }; 
+    }
+    
+    function objmove(event, obj, shift) {
+        let pos = getMousePos(event);
+        obj.style.left  = (pos.x - shift.x) + 'px';
+        obj.style.top   = (pos.y - shift.y) + 'px';
+    };
 
     let mouse = getMousePos(event);
     let obj   = getObjectPos(target);
@@ -39,9 +37,11 @@ function move(event, target, body = target) {
 class Window extends HTMLElement {
     constructor() {
         super(); 
+
+        this.idx = document.resource.WinClass.length; 
+        console.log(document.resource.WinClass);
+
         let wrap = C('div', { class:'wrap' });
-        wrap.style.left = '10px';
-        wrap.style.top  = '10px';
         
         window.addEventListener('resize', ()=>{
             if(wrap.style.left.slice(-1) == '%') return;

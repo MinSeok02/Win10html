@@ -1,9 +1,25 @@
 
+function select() {
+    if (this.select) {
+        alert();        
+    } else {
+        this.select = true; 
+        this.style.border = 'var(--icon-bd)';
+        this.style.backgroundColor = 'var(--icon-hv)';
+    }
+}
+
+function unselect(icon) {
+    icon.select = false;
+    icon.style = "";
+}
+
 class Desktop extends HTMLElement{
     constructor() {
         super();
         
         this.wrap = C('table', { class:'wrap' }); 
+        this.icon = [];
 
         A(this.attachShadow({mode : 'open'}),
         [
@@ -19,18 +35,26 @@ class Desktop extends HTMLElement{
             this.wrap.appendChild(tr);
         }
 
-        for( var i = 1; i<= 4; i++) {
-            this.addIcon(1, i, 'ICON', '../img/edge.png');
-            
-        }
-        this.addIcon(2, 1, 'ICON', '../img/edge.png');
+        document.addEventListener('mousedown', (event)=>{
 
+            console.log(event.target)
+
+
+            
+            for(let i of this.icon) {
+                unselect(i);
+            }
+        })
     }
 
     addIcon(x, y, name, img_src, wnd) {
         let icon  = C('div', { class:'icon' }); 
         let img   = C('img', { src:img_src  }); 
         let title = C('p');  title.innerHTML += name; 
+
+        icon.onclick = select; 
+
+        this.icon.push(icon);
         A(icon, [img, title]);
         return this.at(x, y).appendChild(icon);
     }

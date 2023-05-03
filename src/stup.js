@@ -40,9 +40,6 @@ class Startup extends HTMLElement {
             C('div', { class: 'li2' }),
             C('div', { class: 'li3' }),
         ]
-
-        let id = null;
-        let style = this.li[0].style;
         
         this.li[0].onmouseenter = unfold;
         this.li[0].onmouseleave = fold;
@@ -61,23 +58,7 @@ class Startup extends HTMLElement {
 
         let t = ['전원', '설정', '사진', '문서', '강민석', '시작'];
         let c = this.li[0].children;
-        for(let i in t) {
-            c[i].appendChild(C('p')).textContent = t[i]; 
-        }
-
-        this.addGroup();
-        this.addStupBtn();
-        this.addStupBtn();
-        this.addStupBtn();
-        this.addStupBtn();
-        this.addGroup();
-        this.addStupBtn();
-        this.addStupBtn();
-
-        /* temp */
-        for(var i = 0; i < 5; i++) {
-            this.addList();
-        }
+        for(let i in t) { c[i].appendChild(C('p')).textContent = t[i]; }
 
         document.addEventListener('mousedown', (event)=>{
             if (event.target == document.resource.TaskBar ||

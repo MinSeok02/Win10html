@@ -1,6 +1,7 @@
 @import url('./asset.css');
 
 * {
+    --none-bd: solid 1px #0000; 
     --icon-bd: solid 1px rgba(255, 255, 255, 0.348);
     --icon-hv: rgba(255, 255, 255, 0.133); 
     --icon-txt: white;
@@ -39,6 +40,7 @@ td {
 .icon:hover {
     border: var(--icon-bd);
     background-color: var(--icon-hv);
+    
 }
 
 img {
