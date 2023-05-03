@@ -33,14 +33,23 @@ function move(event, target, body = target) {
     }
 }; 
 
-function fix() {
-    
-}
-
 class Window extends HTMLElement {
     constructor() {
         super(); 
         let wrap = C('div', { class:'wrap' });
+        wrap.style.left = '10px';
+        wrap.style.top  = '10px';
+
+        window.addEventListener('resize', ()=>{
+            if(wrap.style.left.slice(-1) == '%') return;
+
+            let wrect = document.resource.Windows.getBoundingClientRect();
+            let x = parseInt(wrap.style.left.slice(0, -2)) / wrect.width  * 100;
+            let y = parseInt(wrap.style.top.slice(0, -2))  / wrect.height * 100;
+
+            wrap.style.left = x + '%';
+            wrap.style.top  = y + '%';
+        });
 
         let nav  = C('div', { class:'nav'  }); 
         nav.onmousedown = (event)=>{ move(event, nav, wrap) };
