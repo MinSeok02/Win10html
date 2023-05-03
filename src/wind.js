@@ -48,6 +48,8 @@ window class {
 }
  */
 
+
+
 class Window extends HTMLElement {
     constructor() {
         super(); 
@@ -67,9 +69,11 @@ class Window extends HTMLElement {
         { 
             class: 'btn',
             onmouseover: "this.firstChild.style.filter = 'var(--white-filter)'", 
-            onmouseout:  "this.firstChild.style.filter = 'none'"
+            onmouseout:  "this.firstChild.style.filter = 'none'", 
         }, 
         [ C('img', { src:'../img/close.png' }) ]);
+
+        this.close.onclick = ()=> { document.resource.Windows.removeChild(this) }; 
 
         this.maximize = C('div', 
         { 
