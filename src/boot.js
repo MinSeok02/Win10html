@@ -8,9 +8,9 @@ stup.addStupBtn();
 stup.addStupBtn();
 stup.addStupBtn();
 
-for(var i = 0; i < 5; i++) {
-  stup.addList();
-}
+stup.addList('#');
+stup.addList('123');
+stup.addList('456');
 
 let desk = document.resource.DeskTop;
 

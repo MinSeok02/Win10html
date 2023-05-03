@@ -22,7 +22,7 @@ const C = function(tag, properties = null, childs = null) {
 } 
 
 document.resource = {
-  Windows:  T('body')[0],
+  Windows:  I('Windows10'),
   TaskBar:  T('task-bar')[0],
   StartUp:  T('start-up')[0],
   DeskTop:  T('desk-top')[0], 
