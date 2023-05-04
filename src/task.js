@@ -9,6 +9,8 @@ class Taskbar extends HTMLElement {
     constructor() {
         super();
 
+        this.wrap = C('div',  { class:'wrap' }); 
+
         this.start = C('div', 
         { 
             class:'btn task',
@@ -42,11 +44,19 @@ class Taskbar extends HTMLElement {
         //     console.log(new Date())
         // }, 1000);
 
+        A(this.wrap, [this.start,search, time, tail]);
+
         A(this.attachShadow({mode : 'open'}),
         [
             C('link', { rel:'stylesheet', href:'./css/task.css'}),
-            C('div',  { class:'wrap' }, [this.start,search, time, tail])
+            this.wrap,
         ])
+    }
+
+    addTask(wnd) {
+        let task = C('div', { class: 'task' });
+        
+        this.wrap.appendChild(task); 
     }
 }
 

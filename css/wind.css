@@ -158,14 +158,14 @@ iframe {
     top: 0;
     height: var(--width);
     width:  100%;
-    cursor:ns-resize;
+    
 }
 
 .bottom {
     bottom: 0;
     height: var(--width);
     width:  100%;
-    cursor:ns-resize;
+    
 }
 
 .left {
@@ -173,7 +173,7 @@ iframe {
     left: 0;
     width:  var(--width);
     height: 100%;
-    cursor: ew-resize;
+    
 }
 
 .right {
@@ -181,7 +181,7 @@ iframe {
     right: 0;
     width:  var(--width);
     height: 100%;
-    cursor: ew-resize;
+    
 }
 
 .top-left {
@@ -189,7 +189,7 @@ iframe {
     left: 0;
     width: var(--size);
     height: var(--size);
-    cursor: nw-resize;
+    
 }
 
 .top-right {
@@ -197,7 +197,7 @@ iframe {
     right: 0;
     width: var(--size);
     height: var(--size);
-    cursor: ne-resize;
+    
 }
 
 .bottom-left {
@@ -205,7 +205,7 @@ iframe {
     bottom: 0;
     width: var(--size);
     height: var(--size);
-    cursor: sw-resize;
+    
 }
 
 .bottom-right {
@@ -213,5 +213,5 @@ iframe {
     bottom: 0;
     width: var(--size);
     height: var(--size);
-    cursor: se-resize;
+    
 }

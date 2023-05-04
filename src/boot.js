@@ -19,3 +19,11 @@ for( var j = 1; j<= 1 ; j++) {
     desk.addIcon(j, i, 'ICON', '../img/edge.png');
   }
 }
+
+desk.addIcon(5, 5, '시발', '../img/edge.png');
+
+
+let task = document.resource.TaskBar;
+
+
+task.addTask(); 
