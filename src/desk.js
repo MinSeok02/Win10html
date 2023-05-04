@@ -1,9 +1,7 @@
-
-function createWindow() {
-
-    let win = document.resource.Windows;
-    
-    A(win, [C('window-class')]);
+function createWindow(src) {
+    let win = C('window-class');
+    win.register(src); 
+    document.resource.Windows.appendChild(win);
 }
 
 class Desktop extends HTMLElement{
@@ -32,7 +30,7 @@ class Desktop extends HTMLElement{
         ])
     }
 
-    addIcon(x, y, name, img_src, wnd) {
+    addIcon(x, y, name, img_src, src) {
         let icon  = C('div', { class:'icon' }); 
         let img   = C('img', { src:img_src  }); 
         let title = C('p');  title.innerHTML += name; 
@@ -45,7 +43,7 @@ class Desktop extends HTMLElement{
 
             this.selected.push(icon);
 
-            icon.addEventListener('click', createWindow);
+            icon.addEventListener('click', ()=>{createWindow(src)});
             setTimeout(()=>{ icon.removeEventListener('click', createWindow); }, 1000); 
         }; 
 

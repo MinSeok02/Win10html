@@ -6,10 +6,11 @@
 4. 포커싱
  */
 
+
+
 class Window extends HTMLElement {
     constructor() {
         super();
-
         this.idx = document.resource.WinClass.length;
 
         this.wrap       = C('div', 
@@ -52,9 +53,8 @@ class Window extends HTMLElement {
 
         this.min.onclick = ()=>{ this.minimize() };
 
-        this.iframe = C('iframe', { src: '../test.html'});
-        this.iframe.onload = ()=>{ this.iframe.contentDocument.querySelector('head').appendChild(C('script', { src: '../src/iframe.js'})) };
-
+        this.iframe = C('iframe');
+        
         A(this.nav, [this.min, this.max, this.close]);
 
         let resizer = [
@@ -83,6 +83,11 @@ class Window extends HTMLElement {
             C('link', { rel:'stylesheet', href:'./css/wind.css'}),
             this.wrap,
         ]);
+    }
+
+    register(src) {
+        this.iframe.src = src;
+        console.log(this.src);
     }
 
     fix_pos() {
@@ -118,8 +123,6 @@ class Window extends HTMLElement {
         win.ptrX = event.clientX;
         win.ptrY = event.clientY;
         win.style.cursor = this.style.cursor; 
-
-        console.log(event);
 
         function resize(event) {
             let rect = wrap.getBoundingClientRect();
