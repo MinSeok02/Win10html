@@ -53,3 +53,12 @@ img {
 p {
     text-align: center;
 }
+
+.select-rect {
+    position: absolute;
+    display: none;
+    width: 100px;
+    height: 100px;
+    border: solid 1px blue;
+    background-color:  rgba(165, 165, 255, 0.326);
+}

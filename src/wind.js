@@ -87,7 +87,6 @@ class Window extends HTMLElement {
 
     register(src) {
         this.iframe.src = src;
-        console.log(this.src);
     }
 
     fix_pos() {

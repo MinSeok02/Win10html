@@ -20,7 +20,9 @@
 }
 
 .tail {
-
+    position: absolute;
+    right: 0;
+    height: 100%;
     width: 0.5%;
     border-left: solid 1px rgb(124, 124, 124);
 }
@@ -34,6 +36,10 @@
 .task > img {
     margin: auto;
     height: 100%;
+}
+
+.task:hover {
+    background-color: var(--hover-color);
 }
 
 /***********************************************/
@@ -76,9 +82,10 @@
 /***********************************************/
 
 .time {
+    position: absolute;
+    right: 0.5%;
     width: 6.5%;
-    margin-left: auto;
-    margin-right: 0;
+    height: 100%;
 
     font-size: 1em;
     color: rgb(255, 255, 255);
