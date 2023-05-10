@@ -1,4 +1,5 @@
 function createWindow(src) {
+    alert()
     let win = C('window-class');
     win.register(src); 
     document.resource.Windows.appendChild(win);
@@ -12,21 +13,28 @@ function drag(event) {
     let prevY = event.clientY - y; 
     rect.style.left = prevX + 'px';
     rect.style.top  = prevY + 'px'; 
-    
+
     function move(event) {
         rect.style.display = 'block';
-
+ 
         let nextX = event.clientX - x; 
         let nextY = event.clientY - y; 
-        let width  = rect.style.width.slice(0, -2);
-        let height = rect.style.height.slice(0, -2);
-        
-        rect.style.width  = parseInt(width)  + (nextX - prevX) + 'px';
-        rect.style.height = parseInt(height) + (nextY - prevY) + 'px';
-        console.log(rect.style.width);
+        let dw = nextX - prevX; 
+        let dh = nextY - prevY;
 
-        prevX = nextX;
-        prevY = nextY;
+        console.log(dw);        
+        
+        rect.style.width  = Math.abs(dw) + 'px';
+        rect.style.height = Math.abs(dh) + 'px';
+        
+        if (dw < 0) {
+            rect.style.left = (prevX + dw) + 'px';
+        }
+
+        if (dh < 0) {
+            rect.style.top  = (prevY + dh) + 'px';
+        }
+
     }
 
     function up() {

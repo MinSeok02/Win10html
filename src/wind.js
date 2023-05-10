@@ -5,9 +5,6 @@
 3. 최소화, 최대화, 닫기
 4. 포커싱
  */
-
-
-
 class Window extends HTMLElement {
     constructor() {
         super();
@@ -183,7 +180,6 @@ class Window extends HTMLElement {
 }
 
 customElements.define('window-class', Window);
-
 
 //     initMani() {
 //         let mani = A('div', 'mani', this.nav);
