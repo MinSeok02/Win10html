@@ -10,7 +10,7 @@ class Window extends HTMLElement {
         super();
         this.idx = document.resource.WinClass.length;
 
-        this.wrap       = C('div', 
+        this.wrap = C('div', 
         { 
             class:'wrap',
             style: "width:50%; height: 50%;"

@@ -21,20 +21,12 @@ function drag(event) {
         let nextY = event.clientY - y; 
         let dw = nextX - prevX; 
         let dh = nextY - prevY;
-
-        console.log(dw);        
         
         rect.style.width  = Math.abs(dw) + 'px';
         rect.style.height = Math.abs(dh) + 'px';
         
-        if (dw < 0) {
-            rect.style.left = (prevX + dw) + 'px';
-        }
-
-        if (dh < 0) {
-            rect.style.top  = (prevY + dh) + 'px';
-        }
-
+        if (dw < 0) rect.style.left = (prevX + dw) + 'px';
+        if (dh < 0) rect.style.top  = (prevY + dh) + 'px';
     }
 
     function up() {
@@ -56,7 +48,7 @@ class Desktop extends HTMLElement{
         super();
         
         this.wrap = C('table', { class:'wrap' }); 
-        this.icon = [];
+        this.select;
 
         for(var i = 0; i < 8; i++) 
         {
@@ -68,9 +60,17 @@ class Desktop extends HTMLElement{
             this.wrap.appendChild(tr);
         }
 
-        document.addEventListener('mousedown', (event)=>{this.unselect(event)});
+        document.addEventListener('mousedown', (event)=>{
+            if (event.target != this) this.unselect(); 
+        });
+
         document.addEventListener('mousedown', drag); 
-        
+
+        this.wrap.addEventListener('click', (event)=> {
+            console.log(event);
+            console.log(event.target);
+        })
+
         this.rect = C('div', { class:'select-rect', style:'width:0px; height:0px;'}); 
 
         A(this.attachShadow({mode : 'open'}),
@@ -86,27 +86,27 @@ class Desktop extends HTMLElement{
         let img   = C('img', { src:img_src  }); 
         let title = C('p');  title.innerHTML += name; 
 
-        icon.selected = false; 
-        icon.addEventListener('click', ()=>{
-            if (icon.selected) return; 
+        icon.onclick = ()=>{
+            if (icon == this.select) {
+                alert()
+            }
 
-            icon.selected = true; 
             icon.style.border = 'var(--icon-bd)';
             icon.style.backgroundColor = 'var(--icon-hv)';
 
-            icon.fn = ()=> { 
-                createWindow(src); 
-                icon.selected = false; 
-            }
+            
+            this.select = icon;
+        }
 
-            icon.addEventListener('click', icon.fn);
-            setTimeout(()=>{ 
-                icon.removeEventListener('click', icon.fn);
-                icon.selected = false; 
-            }, 800); 
-        });
+            // icon.fn = ()=> { 
+            //     createWindow(src); 
+            // }
 
-        this.icon.push(icon); 
+            // icon.addEventListener('click', icon.fn);
+            // setTimeout(()=>{ 
+            //     icon.removeEventListener('click', icon.fn);
+            // }, 800); 
+
         A(icon, [img, title]);
         return this.at(x, y).appendChild(icon);
     }
@@ -115,11 +115,11 @@ class Desktop extends HTMLElement{
         return this.wrap.children[y-1].children[x-1]; 
     }
 
-    unselect(event) {
-        for(let icon of document.resource.DeskTop.icon) { 
+    unselect() {
+        let icons = this.wrap.getElementsByClassName('icon'); 
+        console.log(icons)
+        for(let icon of icons) { 
             icon.style = "";
-            icon.selected = false; 
-            icon.removeEventListener('click', icon.fn);
         }
     }
 }
