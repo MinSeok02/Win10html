@@ -1,5 +1,4 @@
 function createWindow(src) {
-    alert()
     let win = C('window-class');
     win.register(src); 
     document.resource.Windows.appendChild(win);
@@ -48,7 +47,8 @@ class Desktop extends HTMLElement{
         super();
         
         this.wrap = C('table', { class:'wrap' }); 
-        this.select;
+
+        this.icon = [];
 
         for(var i = 0; i < 8; i++) 
         {
@@ -60,16 +60,16 @@ class Desktop extends HTMLElement{
             this.wrap.appendChild(tr);
         }
 
+        // out focus icons.. 
         document.addEventListener('mousedown', (event)=>{
-            if (event.target != this) this.unselect(); 
+            if (event.target != this) { 
+                for(let elem of this.icon) {
+                    elem.outFocus(); 
+                }
+            }
         });
 
         document.addEventListener('mousedown', drag); 
-
-        this.wrap.addEventListener('click', (event)=> {
-            console.log(event);
-            console.log(event.target);
-        })
 
         this.rect = C('div', { class:'select-rect', style:'width:0px; height:0px;'}); 
 
@@ -81,47 +81,44 @@ class Desktop extends HTMLElement{
         ])
     }
 
-    addIcon(x, y, name, img_src, src) {
-        let icon  = C('div', { class:'icon' }); 
-        let img   = C('img', { src:img_src  }); 
-        let title = C('p');  title.innerHTML += name; 
-
-        icon.onclick = ()=>{
-            if (icon == this.select) {
-                alert()
-            }
-
-            icon.style.border = 'var(--icon-bd)';
-            icon.style.backgroundColor = 'var(--icon-hv)';
-
-            
-            this.select = icon;
-        }
-
-            // icon.fn = ()=> { 
-            //     createWindow(src); 
-            // }
-
-            // icon.addEventListener('click', icon.fn);
-            // setTimeout(()=>{ 
-            //     icon.removeEventListener('click', icon.fn);
-            // }, 800); 
-
-        A(icon, [img, title]);
-        return this.at(x, y).appendChild(icon);
+    addIcon(iconInfo) {
+        let icon = new Icon(iconInfo);
+        this.icon.push(icon);     
+        this.at(icon.x, icon.y).appendChild(icon.get());
     }
 
     at(x, y) {
         return this.wrap.children[y-1].children[x-1]; 
     }
-
-    unselect() {
-        let icons = this.wrap.getElementsByClassName('icon'); 
-        console.log(icons)
-        for(let icon of icons) { 
-            icon.style = "";
-        }
-    }
 }
 
 customElements.define('desk-top', Desktop); 
+
+class Icon {
+    constructor(i) {
+        this.me = C('div', { class:'icon' });
+        this.x  = i.x;
+        this.y  = i.y; 
+        this.src = i.src;
+        
+        let img   = C('img', { src:i.img_src  }); 
+        let title = C('p');  title.innerHTML += i.name; 
+        
+        A(this.me, [img, title]);
+
+        this.me.onclick = ()=>{this.focus()};
+    }
+
+    focus() {
+        this.me.style.border = 'var(--icon-bd)';
+        this.me.style.backgroundColor = 'var(--icon-hv)';
+    }
+
+    outFocus() {
+        this.me.style = '';
+    }
+
+    get() {
+        return this.me;
+    }
+}

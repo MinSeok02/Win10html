@@ -30,12 +30,12 @@ class Startup extends HTMLElement {
         this.li[0].unfold       = unfold; 
 
         A(this.li[0], [
-            C('div', { class: 'btn' }, [C('img', { src:'../img/power.png'})]),
-            C('div', { class: 'btn' }, [C('img', { src:'../img/gear.png'})]),
-            C('div', { class: 'btn' }, [C('img', { src:'../img/image.png'})]),
-            C('div', { class: 'btn' }, [C('img', { src:'../img/document.png'})]),
-            C('div', { class: 'btn' }, [C('img', { src:'../img/user.png'})]),
-            C('div', { class: 'btn start' }, [C('img', { src:'../img/hamburger.png'})]),
+            C('div', { class: 'btn' }, [C('img', { src:'./img/power.png'})]),
+            C('div', { class: 'btn' }, [C('img', { src:'./img/gear.png'})]),
+            C('div', { class: 'btn' }, [C('img', { src:'./img/image.png'})]),
+            C('div', { class: 'btn' }, [C('img', { src:'./img/document.png'})]),
+            C('div', { class: 'btn' }, [C('img', { src:'./img/user.png'})]),
+            C('div', { class: 'btn start' }, [C('img', { src:'./img/hamburger.png'})]),
         ]);
 
         let t = ['전원', '설정', '사진', '문서', '강민석', '시작'];

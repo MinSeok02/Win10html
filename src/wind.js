@@ -5,6 +5,7 @@
 3. 최소화, 최대화, 닫기
 4. 포커싱
  */
+
 class Window extends HTMLElement {
     constructor() {
         super();
@@ -29,7 +30,7 @@ class Window extends HTMLElement {
             onmouseover: "this.firstChild.style.filter = 'var(--white-filter)'",
             onmouseout:  "this.firstChild.style.filter = 'none'",
         },
-        [ C('img', { src:'../img/close.png' }) ]);
+        [ C('img', { src:'./img/close.png' }) ]);
 
         this.close.onclick = ()=> { document.resource.Windows.removeChild(this) };
 
@@ -37,7 +38,7 @@ class Window extends HTMLElement {
         {
             class: 'btn',
         },
-        [ C('img', { src:'../img/maximize.png' }) ]);
+        [ C('img', { src:'./img/maximize.png' }) ]);
 
         this.max.onclick = ()=>{ this.maximize() };
 
@@ -46,7 +47,7 @@ class Window extends HTMLElement {
             class: 'btn',
             style: 'margin-left:auto;',
         },
-        [ C('img', { src:'../img/minimize.png' }) ]);
+        [ C('img', { src:'./img/minimize.png' }) ]);
 
         this.min.onclick = ()=>{ this.minimize() };
 

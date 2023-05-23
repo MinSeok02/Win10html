@@ -18,14 +18,14 @@ class Taskbar extends HTMLElement {
             onmouseleave: "this.firstChild.style.filter = 'none'",
             onclick:      "document.resource.StartUp.show()",
         }, 
-        [ C('img', { src:'../img/windows.png' })])
+        [ C('img', { src:'./img/windows.png' })])
 
         let search  = C('div', 
         { 
             class:'search',
         }, 
         [
-            C('img',   { src:'../img/search.png' }),
+            C('img',   { src:'./img/search.png' }),
             C('input', { tpye:'text' })
         ])
 
