@@ -1,8 +1,3 @@
-function createWindow(src) {
-    let win = C('window-class');
-    win.register(src); 
-    document.resource.Windows.appendChild(win);
-}
 
 function drag(event) {
     let rect  = document.resource.DeskTop.rect;
@@ -49,6 +44,7 @@ class Desktop extends HTMLElement{
         this.wrap = C('table', { class:'wrap' }); 
 
         this.icon = [];
+        this.iconPool = []; 
 
         for(var i = 0; i < 8; i++) 
         {
@@ -60,13 +56,12 @@ class Desktop extends HTMLElement{
             this.wrap.appendChild(tr);
         }
 
-        // out focus icons.. 
         document.addEventListener('mousedown', (event)=>{
-            if (event.target != this) { 
-                for(let elem of this.icon) {
-                    elem.outFocus(); 
-                }
+            if(event.target == this) return; 
+            for(let elem of this.icon) {
+                elem.outFocus(); 
             }
+            this.iconPool.length = 0; 
         });
 
         document.addEventListener('mousedown', drag); 
@@ -100,12 +95,21 @@ class Icon {
         this.x  = i.x;
         this.y  = i.y; 
         this.src = i.src;
-        
+        this.selected = document.resource; 
+
         let img   = C('img', { src:i.img_src  }); 
         let title = C('p');  title.innerHTML += i.name; 
         
         A(this.me, [img, title]);
 
+        this.me.addEventListener('click', function() {
+            
+            console.log(this.selectedIcons)    
+
+            this.addEventListener('click', this.active); 
+            setTimeout(()=>{ this.removeEventListener('click', this.active); }, 1000);
+        }); 
+        
         this.me.onclick = ()=>{this.focus()};
     }
 
@@ -116,9 +120,14 @@ class Icon {
 
     outFocus() {
         this.me.style = '';
+        this.me.removeEventListener('click', this.active);
     }
 
     get() {
         return this.me;
+    }
+
+    active() {
+        alert('create window');        
     }
 }

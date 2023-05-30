@@ -40,9 +40,18 @@ class Taskbar extends HTMLElement {
             class:'btn time'
         })
 
-        // setInterval(()=>{
-        //     console.log(new Date())
-        // }, 1000);
+        setInterval(()=>{
+            let now   = new Date(); 
+            let year  = now.getFullYear();
+            let month = now.getMonth(); 
+            let date  = now.getDate(); 
+            
+            let day   = now.getDay(); 
+
+            time.innerHTML = 
+            `<br>${year}-${month}-${date}`;
+
+        }, 1000);
 
         A(this.wrap, [this.start,search, time, tail]);
 
