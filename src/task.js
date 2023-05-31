@@ -1,11 +1,4 @@
-
-function viewBG() {
-    if ( document.resource.StartUp.visible ) { 
-        document.resource.StartUp.show();
-    }
-}
-
-class Taskbar extends HTMLElement {
+class taskbar extends HTMLElement {
     constructor() {
         super();
 
@@ -13,10 +6,10 @@ class Taskbar extends HTMLElement {
 
         this.start = C('div', 
         { 
-            class:'btn task',
+            class:        "btn task",
             onmouseenter: "this.firstChild.style.filter = 'var(--blue-filter)'",
             onmouseleave: "this.firstChild.style.filter = 'none'",
-            onclick:      "document.resource.StartUp.show()",
+            onclick:      "document.resource.startup.show()",
         }, 
         [ C('img', { src:'./img/windows.png' })])
 
@@ -32,8 +25,10 @@ class Taskbar extends HTMLElement {
         let tail = C('div', 
         { 
             class:'btn tail',
-            onclick: 'viewBG()',
+            onclick: 'this.viewBG()',
         })
+
+        tail.viewBG = ()=>{ if ( document.resource.startup.visible ) document.resource.startup.show() }
 
         let time = C('div', 
         { 
@@ -69,13 +64,7 @@ class Taskbar extends HTMLElement {
     }
 }
 
-customElements.define('task-bar', Taskbar);
-
-// 1. window-class 
-// 1. running 
-// 1. generating 
-
-class Task {
+class task {
     constructor() {
         this.me = C('div', { class: 'task' });
 
@@ -85,3 +74,7 @@ class Task {
         return this.me; 
     }
 }
+
+export { taskbar, task }; 
+
+

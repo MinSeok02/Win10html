@@ -1,70 +1,62 @@
-const Q = (s)=>{ return document.querySelector(s) };
-const I = (s)=>{ return document.getElementById(s) };
-const $ = (s)=>{ return document.getElementsByClassName(s) };
-const T = (s)=>{ return document.getElementsByTagName(s) }; 
-const A = function(parent, childs = null) {
-  if(!childs) return;
-  for(let c of childs) {
-    parent.appendChild(c); 
-  }
-}
+import { taskbar } from './task.js'; 
+import { startup } from './stup.js'; 
+import { desktop } from './desk.js'; 
 
-const C = function(tag, properties = null, childs = null) {
-    let elem = document.createElement(tag); 
-    for (let i in properties) {
-        elem.setAttribute(i, properties[i]);
-    }
+let Wind = C('div', { id: 'Windows10' }); 
 
-    A(elem, childs); 
-    return elem; 
-} 
+customElements.define('task-bar', taskbar);
+customElements.define('start-up', startup);
+customElements.define('desk-top', desktop);
 
 document.resource = {
-  Windows:  I('Windows10'),
-  TaskBar:  T('task-bar')[0],
-  StartUp:  T('start-up')[0],
-  DeskTop:  T('desk-top')[0], 
-  WinClass: T('window-class'),
+  taskbar : C('task-bar'),
+  startup : C('start-up'),
+  desktop : C('desk-top')
 }
 
-import './task.js';
-import './stup.js';
-import './wind.js';
-import './desk.js';
-
-function createWindow(src) {
-    let win = C('window-class');
-    win.register(src); 
-    document.resource.Windows.appendChild(win);
+for(let elem in document.resource) {
+  Wind.appendChild(document.resource[elem]);
 }
+
+A(document.body, [ Wind ]);
+
+// function createWindow(src) {
+//     let win = C('window-class');
+//     win.register(src); 
+//     document.resource.Windows.appendChild(win);
+// }
 
 /**********************************************************/
 
-let stup = document.resource.StartUp; 
+// let stup = document.resource.StartUp; 
 
-stup.addGroup('HTML/CSS');
-stup.addStupBtn();
-stup.addStupBtn();
-stup.addStupBtn();
-stup.addStupBtn();
-stup.addStupBtn();
-stup.addStupBtn();
+// stup.addGroup('HTML/CSS');
+// stup.addStupBtn();
+// stup.addStupBtn();
+// stup.addStupBtn();
+// stup.addStupBtn();
+// stup.addStupBtn();
+// stup.addStupBtn();
 
-stup.addList('#');
-stup.addList('123');
-stup.addList('456');
+// stup.addList('#');
+// stup.addList('123');
+// stup.addList('456');
 
-let desk = document.resource.DeskTop;
+// let desk = document.resource.DeskTop;
 
-for( var j = 1; j<= 1 ; j++) {
-  for( var i = 1; i<= 8; i++) {
-    desk.addIcon({x:j, y:i, name:'ICON', img_src:'./img/edge.png', src:"http://n4082n.dothome.co.kr"});
-  }
-}
-
-
-let task = document.resource.TaskBar;
+// for( var j = 1; j<= 1 ; j++) {
+//   for( var i = 1; i<= 8; i++) {
+//     desk.addIcon({x:j, y:i, name:'ICON', img_src:'./img/edge.png', src:"http://n4082n.dothome.co.kr"});
+//   }
+// }
 
 
-task.addTask(); 
+// let task = document.resource.TaskBar;
 
+
+// task.addTask(); 
+
+
+// import './stup.js';
+// import './wind.js';
+// import './desk.js';

@@ -1,15 +1,6 @@
-function stupDown(event) {
-    if (event.target == document.resource.TaskBar ||
-        event.target == document.resource.StartUp ) {
-        return;
-    }
 
-    if (document.resource.StartUp.visible) {
-        document.resource.StartUp.show();
-    }
-}
+class startup extends HTMLElement {
 
-class Startup extends HTMLElement {
     constructor() {
         super();
 
@@ -25,9 +16,9 @@ class Startup extends HTMLElement {
 
         A(this.wrap, [...this.li]);
 
-        this.li[0].onmouseenter = unfold;
-        this.li[0].onmouseleave = fold;
-        this.li[0].unfold       = unfold; 
+        this.li[0].onmouseenter = this.unfold;
+        this.li[0].onmouseleave = this.fold;
+        this.li[0].unfold       = this.unfold; 
 
         A(this.li[0], [
             C('div', { class: 'btn' }, [C('img', { src:'./img/power.png'})]),
@@ -42,7 +33,7 @@ class Startup extends HTMLElement {
         let c = this.li[0].children;
         for(let i in t) { c[i].appendChild(C('p')).textContent = t[i]; }
 
-        document.addEventListener('mousedown', stupDown);
+        document.addEventListener('mousedown', startup.stupDown);
 
         A(this.attachShadow({mode : 'open'}),
         [
@@ -72,7 +63,7 @@ class Startup extends HTMLElement {
 
     show() {
         let style = this.wrap.style;
-        let start = document.resource.TaskBar.start;
+        let start = document.resource.taskbar.start;
 
         if(this.visible) {
             start.style.backgroundColor = 'var(--theme-color)';
@@ -96,30 +87,30 @@ class Startup extends HTMLElement {
             this.visible = true;
         }
     }
+
+    unfold() {
+        this.value = 
+        setTimeout(()=>{
+            this.style.animation       = 'unfold 0.15s';
+            this.style.backdropFilter  = 'blur(15px)';
+            this.style.backgroundColor = 'var(--fold-bg)';
+            this.style.boxShadow       = 'var(--fold-sh)';
+    
+            setTimeout(()=>{ this.style.width = '40%' }, 120);
+        }, 750);
+    }
+
+    fold() {
+        clearTimeout(this.value);
+        this.style.animation = 'fold 0.1s';
+    
+        setTimeout(()=>{ 
+            this.style.width = '7.5%' 
+            this.style.backdropFilter  = '';
+            this.style.backgroundColor = '';
+            this.style.boxShadow       = '';
+        }, 60);
+    }
 }
 
-customElements.define('start-up', Startup);
-
-function unfold() {
-    this.value = 
-    setTimeout(()=>{
-        this.style.animation       = 'unfold 0.15s';
-        this.style.backdropFilter  = 'blur(15px)';
-        this.style.backgroundColor = 'var(--fold-bg)';
-        this.style.boxShadow       = 'var(--fold-sh)';
-
-        setTimeout(()=>{ this.style.width = '40%' }, 120);
-    }, 750);
-};
-
-function fold() {
-    clearTimeout(this.value);
-    this.style.animation = 'fold 0.1s';
-
-    setTimeout(()=>{ 
-        this.style.width = '7.5%' 
-        this.style.backdropFilter  = '';
-        this.style.backgroundColor = '';
-        this.style.boxShadow       = '';
-    }, 60);
-};
+export { startup }; 

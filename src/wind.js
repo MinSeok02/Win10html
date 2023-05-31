@@ -6,7 +6,8 @@
 4. 포커싱
  */
 
-class Window extends HTMLElement {
+export class Window extends HTMLElement {
+    
     constructor() {
         super();
         this.idx = document.resource.WinClass.length;
@@ -81,10 +82,6 @@ class Window extends HTMLElement {
             C('link', { rel:'stylesheet', href:'./css/wind.css'}),
             this.wrap,
         ]);
-    }
-
-    register(src) {
-        this.iframe.src = src;
     }
 
     fix_pos() {

@@ -1,43 +1,6 @@
 
-function drag(event) {
-    let rect  = document.resource.DeskTop.rect;
-    let { x, y } = document.resource.Windows.getBoundingClientRect();
+class desktop extends HTMLElement{
 
-    let prevX = event.clientX - x; 
-    let prevY = event.clientY - y; 
-    rect.style.left = prevX + 'px';
-    rect.style.top  = prevY + 'px'; 
-
-    function move(event) {
-        rect.style.display = 'block';
- 
-        let nextX = event.clientX - x; 
-        let nextY = event.clientY - y; 
-        let dw = nextX - prevX; 
-        let dh = nextY - prevY;
-        
-        rect.style.width  = Math.abs(dw) + 'px';
-        rect.style.height = Math.abs(dh) + 'px';
-        
-        if (dw < 0) rect.style.left = (prevX + dw) + 'px';
-        if (dh < 0) rect.style.top  = (prevY + dh) + 'px';
-    }
-
-    function up() {
-        rect.style.display = 'none';
-        
-        rect.style.width  = '0px';
-        rect.style.height = '0px';
-
-        document.removeEventListener('mouseup', up);
-        document.removeEventListener('mousemove', move);
-    }
-
-    document.addEventListener('mousemove', move);
-    document.addEventListener('mouseup', up);
-}
-
-class Desktop extends HTMLElement{
     constructor() {
         super();
         
@@ -87,8 +50,6 @@ class Desktop extends HTMLElement{
     }
 }
 
-customElements.define('desk-top', Desktop); 
-
 class Icon {
     constructor(i) {
         this.me = C('div', { class:'icon' });
@@ -103,9 +64,6 @@ class Icon {
         A(this.me, [img, title]);
 
         this.me.addEventListener('click', function() {
-            
-            console.log(this.selectedIcons)    
-
             this.addEventListener('click', this.active); 
             setTimeout(()=>{ this.removeEventListener('click', this.active); }, 1000);
         }); 
@@ -131,3 +89,44 @@ class Icon {
         alert('create window');        
     }
 }
+
+
+function drag(event) {
+    let rect  = document.resource.desktop.rect;
+    let { x, y } = document.resource.Windows.getBoundingClientRect();
+
+    let prevX = event.clientX - x; 
+    let prevY = event.clientY - y; 
+    rect.style.left = prevX + 'px';
+    rect.style.top  = prevY + 'px'; 
+
+    function move(event) {
+        rect.style.display = 'block';
+ 
+        let nextX = event.clientX - x; 
+        let nextY = event.clientY - y; 
+        let dw = nextX - prevX; 
+        let dh = nextY - prevY;
+        
+        rect.style.width  = Math.abs(dw) + 'px';
+        rect.style.height = Math.abs(dh) + 'px';
+        
+        if (dw < 0) rect.style.left = (prevX + dw) + 'px';
+        if (dh < 0) rect.style.top  = (prevY + dh) + 'px';
+    }
+
+    function up() {
+        rect.style.display = 'none';
+        
+        rect.style.width  = '0px';
+        rect.style.height = '0px';
+
+        document.removeEventListener('mouseup', up);
+        document.removeEventListener('mousemove', move);
+    }
+
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', up);
+}
+
+export { desktop }; 
