@@ -1,16 +1,28 @@
+class WinPool { 
+    constructor() {
+        this.pool = []; 
+    }
 
-/*
-1. 드래그 가능
-2. 리사이즈 가능
-3. 최소화, 최대화, 닫기
-4. 포커싱
- */
+    createWindow(src) {
+        let win = C('win-class');
+        document.Windows10.appendChild(win);
+        win.open(src); 
+        this.pool.push(win);
+    }
 
-export class Window extends HTMLElement {
-    
+    coverAll(bool) {
+        for(let win of this.pool) {
+            win.wrap.cover.style.display = bool ? "block" : "none";
+        }
+    }
+}
+
+class Window extends HTMLElement {
     constructor() {
         super();
-        this.idx = document.resource.WinClass.length;
+
+        this.Win = document.Windows10; 
+        this.prior = 0; 
 
         this.wrap = C('div', 
         { 
@@ -23,7 +35,7 @@ export class Window extends HTMLElement {
 
         window.addEventListener('resize', ()=> { this.fix_pos() });
 
-        this.nav.onmousedown = (event)=>{ move(event, this.nav, this.wrap) };
+        this.nav.onmousedown = (event)=>{ this.move(event) };
 
         this.close = C('div',
         {
@@ -33,7 +45,7 @@ export class Window extends HTMLElement {
         },
         [ C('img', { src:'./img/close.png' }) ]);
 
-        this.close.onclick = ()=> { document.resource.Windows.removeChild(this) };
+        this.close.onclick = ()=> { this.Win.removeChild(this) };
 
         this.max = C('div',
         {
@@ -107,22 +119,22 @@ export class Window extends HTMLElement {
     }
 
     resize(event) {
-        let win   = document.resource.Windows;
-        let wrect = win.getBoundingClientRect();  
-        let wrap = this.parentElement;
-        let dir  = this.className.split(' ')[1].split('-'); 
+        let Win   = document.Windows10; 
+        let wrect = Win.getBoundingClientRect();  
+        let wrap  = this.parentElement;
+        let dir   = this.className.split(' ')[1].split('-'); 
 
         wrap.cover.style.display = "block";
 
-        win.ptrX = event.clientX;
-        win.ptrY = event.clientY;
-        win.style.cursor = this.style.cursor; 
+        Win.ptrX = event.clientX;
+        Win.ptrY = event.clientY;
+        Win.style.cursor = this.style.cursor; 
 
         function resize(event) {
             let rect = wrap.getBoundingClientRect();
 
-            let deltaX = (win.ptrX - event.clientX); 
-            let deltaY = (win.ptrY - event.clientY); 
+            let deltaX = (Win.ptrX - event.clientX); 
+            let deltaY = (Win.ptrY - event.clientY); 
 
             for(let i of dir) {
 
@@ -144,15 +156,15 @@ export class Window extends HTMLElement {
                 }
             }
 
-            win.ptrX = event.clientX;
-            win.ptrY = event.clientY;
+            Win.ptrX = event.clientX;
+            Win.ptrY = event.clientY;
         }
 
         function cancel() {
 
-            win.style.cursor = 'default'; 
+            Win.style.cursor = 'default'; 
 
-            let wrect = win.getBoundingClientRect();    
+            let wrect = Win.getBoundingClientRect();    
 
             if(wrap.style.width.slice(-1)  != '%') {
                 let x = parseInt(wrap.style.width.slice(0, -2))  / wrect.width  * 100;
@@ -163,21 +175,58 @@ export class Window extends HTMLElement {
                 wrap.style.height = y + '%';
             }
 
-            win.removeEventListener('mouseup',    cancel);
-            win.removeEventListener('mousemove',  resize);
-            win.removeEventListener('mouseleave', leave);
+            Win.removeEventListener('mouseup',    cancel);
+            Win.removeEventListener('mousemove',  resize);
+            Win.removeEventListener('mouseleave', leave);
             wrap.cover.style.display = "none";
         }
 
         function leave() { cancel(); }
 
-        win.addEventListener('mousemove',  resize);
-        win.addEventListener('mouseup',    cancel);
-        win.addEventListener('mouseleave', leave);
+        Win.addEventListener('mousemove',  resize);
+        Win.addEventListener('mouseup',    cancel);
+        Win.addEventListener('mouseleave', leave);
+    }
+
+    move(event) {
+        let Win = this.Win; 
+        function getMousePos(event) {
+            let base = Win.getBoundingClientRect();
+            return { x:(event.clientX - base.left), y:(event.clientY  - base.top) };
+        }
+    
+        function getObjectPos(obj) {
+            let base  = Win.getBoundingClientRect();
+            let tRect = obj.getBoundingClientRect();
+            return { x:(tRect.left - base.left), y:(tRect.top  - base.top) };
+        }
+    
+        function objmove(event, obj, shift) {
+            let pos = getMousePos(event);
+            obj.style.left  = (pos.x - shift.x) + 'px';
+            obj.style.top   = (pos.y - shift.y) + 'px';
+        };
+    
+        let mouse = getMousePos(event);
+        let obj   = getObjectPos(this.nav);
+        let shift = { x:(mouse.x - obj.x), y:(mouse.y  - obj.y) };
+        let eventFn = (event)=>{ objmove(event, this.wrap, shift); };
+    
+        document.addEventListener('mousemove', eventFn);
+    
+        this.wrap.cover.style.display = "block";
+    
+        this.nav.onmouseup = ()=> {
+            document.removeEventListener('mousemove', eventFn);
+            this.nav.onmouseup = null;
+            this.wrap.cover.style.display = "none";
+        }
+    };
+
+    open(src) {
+        this.iframe.src = src; 
     }
 }
-
-customElements.define('window-class', Window);
 
 //     initMani() {
 //         let mani = A('div', 'mani', this.nav);
@@ -193,38 +242,5 @@ customElements.define('window-class', Window);
 //     }
 // }
 
-// TO DO: refactoring this. 
-function move(event, target, body = target) {
-
-    function getMousePos(event) {
-        let base = document.resource.Windows.getBoundingClientRect();
-        return { x:(event.clientX - base.left), y:(event.clientY  - base.top) };
-    }
-
-    function getObjectPos(obj) {
-        let base  = document.resource.Windows.getBoundingClientRect();
-        let tRect = obj.getBoundingClientRect();
-        return { x:(tRect.left - base.left), y:(tRect.top  - base.top) };
-    }
-
-    function objmove(event, obj, shift) {
-        let pos = getMousePos(event);
-        obj.style.left  = (pos.x - shift.x) + 'px';
-        obj.style.top   = (pos.y - shift.y) + 'px';
-    };
-
-    let mouse = getMousePos(event);
-    let obj   = getObjectPos(target);
-    let shift = { x:(mouse.x - obj.x), y:(mouse.y  - obj.y) };
-    let eventFn = (event)=>{ objmove(event, body, shift); };
-
-    document.addEventListener('mousemove', eventFn);
-
-    body.cover.style.display = "block";
-
-    target.onmouseup = ()=> {
-        document.removeEventListener('mousemove', eventFn);
-        target.onmouseup = null;
-        body.cover.style.display = "none";
-    }
-};
+customElements.define('win-class', Window);
+export let winpool = new WinPool(); 

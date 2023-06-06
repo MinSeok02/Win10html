@@ -1,4 +1,4 @@
-class taskbar extends HTMLElement {
+class TaskBar extends HTMLElement {
     constructor() {
         super();
 
@@ -75,6 +75,6 @@ class task {
     }
 }
 
-export { taskbar, task }; 
-
+customElements.define('task-bar', TaskBar);
+export let taskbar = C('task-bar'); 
 

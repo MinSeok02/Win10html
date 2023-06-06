@@ -1,6 +1,4 @@
-
-class startup extends HTMLElement {
-
+class StartUp extends HTMLElement {
     constructor() {
         super();
 
@@ -33,7 +31,13 @@ class startup extends HTMLElement {
         let c = this.li[0].children;
         for(let i in t) { c[i].appendChild(C('p')).textContent = t[i]; }
 
-        document.addEventListener('mousedown', startup.stupDown);
+        document.addEventListener('mousedown', (event)=>{
+            if ( !this.visible ) return; 
+            let res = document.resource; 
+            if ( event.target == res.startup ) return; 
+            if ( event.target == res.taskbar ) return; 
+            this.show();
+        });
 
         A(this.attachShadow({mode : 'open'}),
         [
@@ -113,4 +117,5 @@ class startup extends HTMLElement {
     }
 }
 
-export { startup }; 
+customElements.define('start-up', StartUp);
+export let startup = C('start-up'); 
