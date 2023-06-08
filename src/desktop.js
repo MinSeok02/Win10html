@@ -27,9 +27,6 @@ class DeskTop extends HTMLElement{
         
         document.addEventListener('mousedown', this.drag); 
 
-        // this.wrap.onmouseover = ()=>{ this.dragBlock = false; }
-        // this.wrap.onmouseout  = ()=>{ this.dragBlock = true; }
-
         this.rect = C('div', { class:'select-rect', style:'width:0px; height:0px;'}); 
 
         A(this.attachShadow({mode : 'open'}),
@@ -113,7 +110,7 @@ class Icon {
         this.me.addEventListener('click', ()=>{
             activeCover.style.display = 'block';
             activeCover.onclick = ()=>{
-                document.resource.winpool.createWindow(i.src); 
+                document.resource.winpool.createWindow(i); 
             }
 
             setTimeout(()=>{ 

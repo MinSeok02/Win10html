@@ -57,9 +57,11 @@ class TaskBar extends HTMLElement {
         ])
     }
 
-    addTask(wnd) {
-        let task = C('div', { class: 'task' });
-        
+    addTask(info) {
+        let task = C('div', 
+            { class: 'task' }, 
+            [ C('img', { src: info.img_src, style: 'height: 60%;'})]);
+
         this.wrap.appendChild(task); 
     }
 }
