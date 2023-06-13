@@ -54,28 +54,36 @@ class StartUp extends HTMLElement {
         A(this.li[2], [C('div', { class:'group' },[ slot, C('div', { class:'content'})]) ]);
     }
 
-    addStupBtn() {
+    addStupBtn(icon_src = null) {
+
+        let btn = C('div', {class:'btn'}); 
+        let img = C('img', {class:'icon', src:icon_src}); 
+        btn.appendChild(img); 
+
         let content = this.li[2].getElementsByClassName('content');
-        content[content.length - 1].appendChild(C('div', {class:'btn'}));
+        content[content.length - 1].appendChild(btn);
     }
 
     addList(txt, icon_src = null) {
-
+        let text = C('p', { class:'list' });
+        
         if( icon_src ) {
             let icon = C('img', { class: 'icon', src: icon_src });
-            this.li[1].appendChild(icon);
+            text.appendChild(icon);
         }
 
-        let text = C('pre', { class:'list' });
-        text.textContent = txt;
+        text.innerHTML += txt;
         this.li[1].appendChild(text);
     }
 
     show() {
         let style = this.wrap.style;
         let start = document.resource.taskbar.start;
-
+        let winpool = document.resource.winpool; 
+        
         if(this.visible) {
+            winpool.cover(false); 
+
             start.style.backgroundColor = 'var(--theme-color)';
             style.height    = '0px';
             style.animation = 'none';
@@ -86,6 +94,8 @@ class StartUp extends HTMLElement {
 
             this.visible = false;
         } else {
+            winpool.cover(true); 
+
             start.style.backgroundColor = 'var(--hover-color)';
             style.height = '80%';
             style.animation = 'up 0.15s alternate';

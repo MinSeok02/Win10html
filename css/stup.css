@@ -116,8 +116,9 @@
     background-color: var(--hover-color);
 }
 
-.list .icon {
+.list > .icon {
     height: 100%;
+    display: inline-block;
 }
 
 /***********************************************/
@@ -180,14 +181,23 @@
     width: 100%;
     aspect-ratio: 1/1;
     background-color: var(--btn-bg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-style: solid;
+    border-width: min(0.375vh, 0.6vw);
+    border-color: var(--btn-bg);;
 }
 
 .group > .content > .btn:hover {
-    border-style: solid;
-    border-width: min(0.375vh, 0.6vw);
     border-color: var(--btn-bd);
 }
 
+.group > .content > .btn > .icon {
+    width: 90%;
+}
 /***********************************************/
 
 @keyframes up {

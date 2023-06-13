@@ -4,7 +4,7 @@
     --nav-bg: rgb(205, 205, 205);
     --nav-hv: rgb(184, 184, 184);
 
-    --nav-height: min(4vh, calc(4vw / 1.7));
+    --nav-height: min(4.5vh, calc(4.5vw / 1.7));
 }
 
 .wind {
@@ -43,6 +43,7 @@ iframe {
     height: 100%;
     width: 100%;
     display: none;
+    z-index: 98;
     /* background-color: red; */
 }
 
@@ -52,6 +53,7 @@ iframe {
     --width: 3px;
     --size: 6px;
 
+    z-index: 99;
     position: absolute;
 }
 

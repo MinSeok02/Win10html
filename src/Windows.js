@@ -29,14 +29,26 @@ let desk = document.resource.desktop;
 
 desk.addIcon({type: browser, x:1, y:5, name:'Icon', img_src:'./img/edge.png', src:"http://n4082n.dothome.co.kr"});
 
-
 let stup = document.resource.startup;
 stup.addGroup('생산성');
-stup.addStupBtn();
-stup.addStupBtn();
+stup.addStupBtn('./img/edge.png');
+stup.addStupBtn('./img/html.png');
+stup.addStupBtn('./img/html.png');
 
-stup.addList(' HTML/CSS');
-stup.addList('1주차 - ', './img/html.png');
-stup.addList('2주차 - ');
+stup.addList('2주차');
+stup.addList('23.03.15 : list', './img/html.png');
 
-// task.addTask();
+stup.addList('3주차');
+stup.addList('23.03.21 : Table', './img/html.png');
+
+stup.addList('4주차');
+stup.addList('23.03.28 : Table', './img/html.png');
+stup.addList('23.03.29 : Table', './img/html.png');
+
+stup.addList('4주차');
+stup.addList('23.03.28 : Table', './img/html.png');
+stup.addList('23.03.29 : Table', './img/html.png');
+
+stup.addList('4주차');
+stup.addList('23.03.28 : Table', './img/html.png');
+stup.addList('23.03.29 : Table', './img/html.png');

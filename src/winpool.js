@@ -166,25 +166,28 @@ class Window extends HTMLElement {
             let deltaX = (root.ptrX - event.clientX); 
             let deltaY = (root.ptrY - event.clientY); 
 
+            let min_width  = wrect.width  * 0.25; 
+            let min_height = wrect.height * 0.10; 
+
             for(let i of dir) {
 
                 switch(i) {
                     case 'left': 
-                        if ( rect.width + deltaX < 400) { continue; } 
+                        if ( rect.width + deltaX < min_width) { return; } 
                         wind.style.width  = rect.width + deltaX + 'px';
                         wind.style.left   = rect.x     - deltaX - wrect.x + 'px';
                         break;  
                     case 'right':
-                        if ( rect.width - deltaX < 400) {  continue; } 
+                        if ( rect.width - deltaX < min_width) {  return; } 
                         wind.style.width  = rect.width - deltaX + 'px';
                         break;
                     case 'top':
-                        if ( rect.height + deltaY < 100) { continue; } 
+                        if ( rect.height + deltaY < min_height) { return; } 
                         wind.style.height = rect.height + deltaY + 'px';
                         wind.style.top    = rect.y      - deltaY - wrect.y + 'px';
                         break;
                     case 'bottom':
-                        if ( rect.height - deltaY < 100) { continue; } 
+                        if ( rect.height - deltaY < min_height) { return; } 
                         wind.style.height = rect.height - deltaY + 'px';
                         break;
                 }

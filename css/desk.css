@@ -32,6 +32,8 @@ td {
     position: sticky;
     width: 98%;
 
+    font-size: min(2vh, calc(2vw / 1.7));
+
     color: var(--icon-txt);
     text-shadow: var(--icon-txt-shadow);
     border: var(--icon-bd);

@@ -19,7 +19,7 @@ class TaskBar extends HTMLElement {
         }, 
         [
             C('img',   { src:'./img/search.png' }),
-            C('input', { tpye:'text' })
+            C('input', { tpye:'text', placeholder: 'Search' })
         ])
 
         let tail = C('div', 
@@ -30,25 +30,24 @@ class TaskBar extends HTMLElement {
 
         tail.viewBG = ()=>{ if ( document.resource.startup.visible ) document.resource.startup.show() }
 
-        let time = C('div', 
-        { 
-            class:'time'
-        })
+        let time_wrap = C('div', { class:'time' })
+        let time = C('p');
+        time_wrap.appendChild(time);
 
         setInterval(()=>{
             let now   = new Date(); 
             let year  = now.getFullYear();
-            let month = now.getMonth(); 
-            let date  = now.getDate(); 
+            let month = String(now.getMonth()).padStart(2, '0'); 
+            let date  = String(now.getDate()).padStart(2, '0'); 
             
-            let day   = now.getDay(); 
+            let hour = String(now.getHours() % 12).padStart(2, '0'); 
+            let min  = String(now.getMinutes()).padStart(2, '0');
+            let ampm = (now.getHours() + 1) > 12 ? 'PM' : 'AM'; 
 
-            time.innerHTML = 
-            `<br>${year}-${month}-${date}`;
-
+            time.innerHTML = `${ampm} ${hour}:${min}`;
         }, 1000);
 
-        A(this.wrap, [this.start,search, time, tail]);
+        A(this.wrap, [this.start,search, time_wrap, tail]);
 
         A(this.attachShadow({mode : 'open'}),
         [
