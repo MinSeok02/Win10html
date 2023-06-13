@@ -1,6 +1,7 @@
 class WinPool { 
     constructor() {
-        this.pool = []; 
+        this.pool = [];
+        this.focus = null;
     }
 
     createWindow(info) {
@@ -10,17 +11,34 @@ class WinPool {
         window.program = new (info.type)(window);
         
         this.pool.push(window);
-        document.Windows10.appendChild(window);
+        
+        if(this.focus == null) {
+            window.wind.style.zIndex = '100'; 
+            this.focus = window; 
+            this.focus.wind.cover.style.display = "none";
+            
+            console.log(this.focus.wind.style.zIndex)
+        }
+        else {
+            this.swap_focus(window); 
+        }
 
-        console.log(document.resource.desktop);
+        document.Windows10.appendChild(window);
         document.resource.taskbar.addTask(info);
-         
     }
 
-    coverAll(bool) {
-        for(let window of this.pool) {
-            window.wind.cover.style.display = bool ? "block" : "none";
-        }
+    cover(bool) {
+        this.focus.wind.cover.style.display = bool ? "block" : "none";
+    }
+
+    swap_focus(target) {
+        if (target == this.focus) return;
+        
+        target.wind.style.zIndex = this.focus.wind.style.zIndex;
+
+        this.focus.wind.cover.style.display = "block";
+        this.focus.wind.style.zIndex = ''; 
+        this.focus = target; 
     }
 }
 
@@ -29,7 +47,6 @@ class Window extends HTMLElement {
         super();
 
         this.root = document.Windows10; 
-        this.prior = 0; 
 
         this.wind = C('div', 
         { 
@@ -41,10 +58,16 @@ class Window extends HTMLElement {
         this.nav        = C('div', { class: 'nav'  });
         this.nav_handle = C('div', { class: 'handle' });
 
+        // <Events> 
         window.addEventListener('resize', ()=> { this.fix_pos() });
+        this.wind.addEventListener('mousedown', ()=> {
+            document.resource.winpool.swap_focus(this);
+        });
+        // </Events> 
 
         this.nav_handle.onmousedown = (event)=>{ this.move(event) };
 
+        // <Buttons> 
         this.close = C('div',
         {
             class: 'btn',
@@ -71,9 +94,9 @@ class Window extends HTMLElement {
         [ C('img', { src:'./img/minimize.png' }) ]);
 
         this.min.onclick = ()=>{ this.minimize() };
+        // </Buttons> 
 
         A(this.nav, [this.nav_handle, this.min, this.max, this.close]);
-
 
         let resizer = [
             C('div', {class:'resizer top',          style:'cursor:ns-resize;'}),
@@ -130,7 +153,7 @@ class Window extends HTMLElement {
         let wind  = this.parentElement;
         let dir   = this.className.split(' ')[1].split('-'); 
 
-        winpool.coverAll(true); 
+        winpool.cover(true); 
 
         root.ptrX = event.clientX;
         root.ptrY = event.clientY;
@@ -189,7 +212,7 @@ class Window extends HTMLElement {
             root.removeEventListener('mouseup',    cancel);
             root.removeEventListener('mousemove',  resize);
             root.removeEventListener('mouseleave', leave);
-            winpool.coverAll(false); 
+            winpool.cover(false); 
         }
 
         function leave() { cancel(); }
@@ -225,12 +248,12 @@ class Window extends HTMLElement {
     
         document.addEventListener('mousemove', eventFn);
     
-        winpool.coverAll(true); 
+        winpool.cover(true); 
     
         this.nav.onmouseup = ()=> {
             document.removeEventListener('mousemove', eventFn);
             this.nav.onmouseup = null;
-            winpool.coverAll(false); 
+            winpool.cover(false); 
         }
     };
 

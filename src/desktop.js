@@ -61,7 +61,7 @@ class DeskTop extends HTMLElement{
         rect.style.left = prevX + 'px';
         rect.style.top  = prevY + 'px'; 
     
-        winpool.coverAll(true); 
+        winpool.cover(true); 
         
         function move(event) {
             rect.style.display = 'block';
@@ -87,7 +87,7 @@ class DeskTop extends HTMLElement{
             document.removeEventListener('mouseup', up);
             document.removeEventListener('mousemove', move);
 
-            winpool.coverAll(false); 
+            winpool.cover(false); 
         }
     
         document.addEventListener('mousemove', move);
