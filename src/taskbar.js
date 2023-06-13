@@ -6,7 +6,7 @@ class TaskBar extends HTMLElement {
 
         this.start = C('div', 
         { 
-            class:        "btn task",
+            class:        "start",
             onmouseenter: "this.firstChild.style.filter = 'var(--blue-filter)'",
             onmouseleave: "this.firstChild.style.filter = 'none'",
             onclick:      "document.resource.startup.show()",
@@ -24,7 +24,7 @@ class TaskBar extends HTMLElement {
 
         let tail = C('div', 
         { 
-            class:'btn tail',
+            class:'tail',
             onclick: 'this.viewBG()',
         })
 
@@ -32,7 +32,7 @@ class TaskBar extends HTMLElement {
 
         let time = C('div', 
         { 
-            class:'btn time'
+            class:'time'
         })
 
         setInterval(()=>{
@@ -58,22 +58,24 @@ class TaskBar extends HTMLElement {
     }
 
     addTask(info) {
-        let task = C('div', 
-            { class: 'task' }, 
-            [ C('img', { src: info.img_src, style: 'height: 60%;'})]);
-
-        this.wrap.appendChild(task); 
+        return new task(info);
     }
 }
 
 class task {
-    constructor() {
-        this.me = C('div', { class: 'task' });
+    constructor(info) {
+        this.root = document.resource.taskbar; 
 
+        this.me = C('div', 
+            { class: 'task' }, 
+            [ C('img', { src: info.img_src, style: 'height: 60%;'})]
+        );
+
+        this.root.wrap.appendChild(this.me); 
     }
 
-    get() {
-        return this.me; 
+    quit() {
+        this.root.wrap.removeChild(this.me); 
     }
 }
 

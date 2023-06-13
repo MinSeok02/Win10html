@@ -31,12 +31,12 @@ desk.addIcon({type: browser, x:1, y:5, name:'Icon', img_src:'./img/edge.png', sr
 
 
 let stup = document.resource.startup;
-stup.addGroup('HTML/CSS');
+stup.addGroup('생산성');
 stup.addStupBtn();
 stup.addStupBtn();
 
-stup.addList('1학기');
-stup.addList('1주차 - ');
+stup.addList(' HTML/CSS');
+stup.addList('1주차 - ', './img/html.png');
 stup.addList('2주차 - ');
 
 // task.addTask();

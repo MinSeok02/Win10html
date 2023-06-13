@@ -16,25 +16,24 @@ class WinPool {
             window.wind.style.zIndex = '100'; 
             this.focus = window; 
             this.focus.wind.cover.style.display = "none";
-            
-            console.log(this.focus.wind.style.zIndex)
         }
         else {
             this.swap_focus(window); 
         }
 
         document.Windows10.appendChild(window);
-        document.resource.taskbar.addTask(info);
+        window.task = document.resource.taskbar.addTask(info);
     }
 
     cover(bool) {
-        this.focus.wind.cover.style.display = bool ? "block" : "none";
+        if(this.focus) this.focus.wind.cover.style.display = bool ? "block" : "none";
     }
 
     swap_focus(target) {
         if (target == this.focus) return;
         
         target.wind.style.zIndex = this.focus.wind.style.zIndex;
+        target.wind.cover.style.display = "none";
 
         this.focus.wind.cover.style.display = "block";
         this.focus.wind.style.zIndex = ''; 
@@ -47,7 +46,8 @@ class Window extends HTMLElement {
         super();
 
         this.root = document.Windows10; 
-
+        this.task = null;
+        
         this.wind = C('div', 
         { 
             class: 'wind',
@@ -258,8 +258,8 @@ class Window extends HTMLElement {
     };
 
     quit() {
+        this.task.quit();
         this.root.removeChild(this);
-
     }
 }
 

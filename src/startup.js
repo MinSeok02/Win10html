@@ -59,10 +59,16 @@ class StartUp extends HTMLElement {
         content[content.length - 1].appendChild(C('div', {class:'btn'}));
     }
 
-    addList(txt) {
-        let list = C('p', { class:'list' });
-        list.textContent = txt;
-        this.li[1].appendChild(list);
+    addList(txt, icon_src = null) {
+
+        if( icon_src ) {
+            let icon = C('img', { class: 'icon', src: icon_src });
+            this.li[1].appendChild(icon);
+        }
+
+        let text = C('pre', { class:'list' });
+        text.textContent = txt;
+        this.li[1].appendChild(text);
     }
 
     show() {

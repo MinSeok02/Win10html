@@ -116,6 +116,10 @@
     background-color: var(--hover-color);
 }
 
+.list .icon {
+    height: 100%;
+}
+
 /***********************************************/
 
 .li3 {
