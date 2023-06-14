@@ -29,24 +29,12 @@ class DeskTop extends HTMLElement{
 
         this.rect = C('div', { class:'select-rect', style:'width:0px; height:0px;'}); 
 
-        // <test>
-        this.testPoint = C('div', { style:`
-            position:absolute; 
-            width: 5px;
-            height: 5px; 
-            background-color: blue; 
-        `});
-        this.wrap.appendChild(this.testPoint);
-        // </test>
-
         A(this.attachShadow({mode : 'open'}),
         [
             C('link', { rel:'stylesheet', href:'./css/desk.css'}),
             this.wrap,
-            this.rect,
+            this.rect 
         ])
-
-
     }
 
     addIcon(iconInfo) {
@@ -72,22 +60,7 @@ class DeskTop extends HTMLElement{
         let prevY = event.clientY - y; 
         rect.style.left = prevX + 'px';
         rect.style.top  = prevY + 'px'; 
-        
-        let desk_rect = desktop.wrap.getBoundingClientRect(); 
-        let height    = desk_rect.height; 
-        let width     = desk_rect.width; 
-
-        // <test>
-        console.log("height: " + height + "  width: " + width );
-        console.log(desk_rect);
-
-        // X-unit 6.25 % 
-        // Y-unit 2.94 %
-
-        
-        // </test>
-
-
+    
         winpool.cover(true); 
         
         function move(event) {
@@ -103,16 +76,9 @@ class DeskTop extends HTMLElement{
             
             if (dw < 0) rect.style.left = (prevX + dw) + 'px';
             if (dh < 0) rect.style.top  = (prevY + dh) + 'px';
-
-            
-            // <test>
-            let testPoint = document.resource.desktop.testPoint; 
-            testPoint.style.left = nextX / width  * 100 + '%'; 
-            testPoint.style.top  = nextY / height * 100 + '%'; 
-            // </test>
         }
     
-        function up(event) {
+        function up() {
             rect.style.display = 'none';
             
             rect.style.width  = '0px';
@@ -122,18 +88,6 @@ class DeskTop extends HTMLElement{
             document.removeEventListener('mousemove', move);
 
             winpool.cover(false); 
-
-            let nextX = event.clientX - x; 
-            let nextY = event.clientY - y; 
-
-            // <test>
-            console.log("prev : " + prevX + ' ' + prevY);
-            console.log("next : " + nextX + ' ' + nextY);
-
-            let unitX = nextX / width  * 100 + '%'; 
-            let unitY = nextY / height * 100 + '%'; 
-            console.log("X: " + unitX + "  Y: " + unitY); 
-            // </test>
         }
     
         document.addEventListener('mousemove', move);

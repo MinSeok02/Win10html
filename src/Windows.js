@@ -25,9 +25,9 @@ A(document.body, [ document.Windows10 ]);
  */
 
 /**********************************************************/
-
 let desk = document.resource.desktop; 
-desk.addIcon({type: browser, x:1, y:1, name:'Icon', img_src:'./img/edge.png', src:"http://n4082n.dothome.co.kr"});
+
+desk.addIcon({type: browser, x:1, y:5, name:'Icon', img_src:'./img/edge.png', src:"http://n4082n.dothome.co.kr"});
 
 let stup = document.resource.startup;
 stup.addGroup('생산성');
@@ -52,15 +52,3 @@ stup.addList('23.03.29 : Table', './img/html.png');
 stup.addList('4주차');
 stup.addList('23.03.28 : Table', './img/html.png');
 stup.addList('23.03.29 : Table', './img/html.png');
-
-
-
-// <testCode> 
-
-
-
-desk.wrap.style.backgroundColor = 'red';
- 
-
-
-// </testCode> 
