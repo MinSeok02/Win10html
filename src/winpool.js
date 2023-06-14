@@ -6,10 +6,11 @@ class WinPool {
 
     createWindow(info) {
         let window = C('win-class');
+        document.Windows10.appendChild(window);
         
         window.info = info;
         window.program = new (info.type)(window);
-        
+
         this.pool.push(window);
         
         if(this.focus == null) {
@@ -21,8 +22,11 @@ class WinPool {
             this.swap_focus(window); 
         }
 
-        document.Windows10.appendChild(window);
+        window.program.newtab('./test.html');
+
+        
         window.task = document.resource.taskbar.addTask(info);
+
     }
 
     cover(bool) {
@@ -151,7 +155,7 @@ class Window extends HTMLElement {
         let root  = document.Windows10; 
         let wrect = root.getBoundingClientRect();  
         let wind  = this.parentElement;
-        let dir   = this.className.split(' ')[1].split('-'); 
+        let dir   = this.className.split(' ')[1];
 
         winpool.cover(true); 
 
@@ -167,34 +171,93 @@ class Window extends HTMLElement {
             let deltaY = (root.ptrY - event.clientY); 
 
             let min_width  = wrect.width  * 0.25; 
-            let min_height = wrect.height * 0.10; 
+            let min_height = wrect.height * 0.09; 
+            
+            // TO DO: refactoring this. 
+            switch(dir) {
+                case 'left': 
+                if ( rect.width + deltaX < min_width) return; 
+                wind.style.width  = rect.width + deltaX + 'px';
+                wind.style.left   = rect.x     - deltaX - wrect.x + 'px';
 
-            for(let i of dir) {
-
-                switch(i) {
-                    case 'left': 
-                        if ( rect.width + deltaX < min_width) { return; } 
-                        wind.style.width  = rect.width + deltaX + 'px';
-                        wind.style.left   = rect.x     - deltaX - wrect.x + 'px';
-                        break;  
-                    case 'right':
-                        if ( rect.width - deltaX < min_width) {  return; } 
-                        wind.style.width  = rect.width - deltaX + 'px';
-                        break;
-                    case 'top':
-                        if ( rect.height + deltaY < min_height) { return; } 
-                        wind.style.height = rect.height + deltaY + 'px';
-                        wind.style.top    = rect.y      - deltaY - wrect.y + 'px';
-                        break;
-                    case 'bottom':
-                        if ( rect.height - deltaY < min_height) { return; } 
-                        wind.style.height = rect.height - deltaY + 'px';
-                        break;
-                }
-                
                 root.ptrX = event.clientX;
                 root.ptrY = event.clientY;
+                break;  
+            case 'right':
+                if ( rect.width - deltaX < min_width)   return;
+                wind.style.width  = rect.width - deltaX + 'px';
+
+                root.ptrX = event.clientX;
+                root.ptrY = event.clientY;
+                break;
+            case 'top':
+                if ( rect.height + deltaY < min_height) return; 
+                wind.style.height = rect.height + deltaY + 'px';
+                wind.style.top    = rect.y      - deltaY - wrect.y + 'px';
+
+                root.ptrX = event.clientX;
+                root.ptrY = event.clientY;
+                break;
+            case 'bottom':
+                if ( rect.height - deltaY < min_height) return;  
+                wind.style.height = rect.height - deltaY + 'px';
+
+                root.ptrX = event.clientX;
+                root.ptrY = event.clientY;
+                break;
+            case 'top-left':
+                if ( rect.height + deltaY > min_height) {
+                    wind.style.height = rect.height + deltaY + 'px';
+                    wind.style.top    = rect.y      - deltaY - wrect.y + 'px';
+
+                    root.ptrY = event.clientY;
+                } 
+
+                if ( rect.width + deltaX > min_width) {
+                    wind.style.width  = rect.width + deltaX + 'px';
+                    wind.style.left   = rect.x     - deltaX - wrect.x + 'px';
+
+                    root.ptrX = event.clientX;
+                }
+                break;
+            case 'top-right':
+                if ( rect.height + deltaY > min_height) {
+                    wind.style.height = rect.height + deltaY + 'px';
+                    wind.style.top    = rect.y      - deltaY - wrect.y + 'px';
+                    root.ptrY = event.clientY;
+                } 
+
+                if ( rect.width - deltaX > min_width) {
+                    wind.style.width  = rect.width - deltaX + 'px';
+                    root.ptrX = event.clientX;
+                }
+                break;
+            case 'bottom-left':
+                if ( rect.height - deltaY > min_height) {
+                    wind.style.height = rect.height - deltaY + 'px';
+                    root.ptrY = event.clientY;
+                } 
+
+                if ( rect.width + deltaX > min_width) {
+                    wind.style.width  = rect.width + deltaX + 'px';
+                    wind.style.left   = rect.x     - deltaX - wrect.x + 'px';
+                    root.ptrX = event.clientX;
+                }
+                break;
+            case 'bottom-right':
+                if ( rect.height - deltaY > min_height) {
+                    wind.style.height = rect.height - deltaY + 'px';
+                    root.ptrY = event.clientY;
+                } 
+
+                if ( rect.width - deltaX > min_width) {
+                    wind.style.width  = rect.width - deltaX + 'px';
+                    root.ptrX = event.clientX;
+                }
+                break;
             }
+
+
         }
 
         function cancel() {
