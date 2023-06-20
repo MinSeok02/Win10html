@@ -90,6 +90,5 @@ for(let htm of cls) {
 
   row++;
   week = htm.week;
-  console.log(week)
 }
 

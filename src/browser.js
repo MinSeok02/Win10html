@@ -36,6 +36,6 @@ export class browser {
     ]);
 
     A(this.tabs, [tab]); 
-    this.search_input.value = src;
+    this.search_input.value = document.URL.slice(0, -9) + src.slice(1, -1);
   }
 }
