@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+
+        a[target="_blank"] {
+            background-color: gold;
+            font-size: 20px;
+        }
+                
+        a[target="_self"] {
+            background-color: aqua;
+            font-size: 30px;
+        }
+        
+
+    </style>
+
+    <a href="https://www.naver.com/" target="_blank">네이버</a>
+    <a href="https://www.daum.net/"  target="">다음</a>
+    <a href="https://www.yc.ac.kr/"  target="_self">연암공대</a>
+
+    <style>
+        #f1 {
+            border: 2px dotted red;
+            width: 500px;
+        }
+        #f1 input:checked + label {
+            color: red;
+            font-size: 30px;
+        }
+        #bt1:hover {
+            background-color: pink;
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+        }
+        a:visited {
+            color: red;
+        }
+        #f1 input:focus + label {
+            color: red;
+            font-size: 30px;
+        }
+        #f1 input:focus {
+            background-color: gold;
+        }
+    </style>
+    <form id="f1">
+        <input type="radio" name="ban" id="1A">
+        <label for="1A">1A</label>
+        <input type="radio" name="ban" id="1B">
+        <label for="1B">1B</label>
+        <input type="radio" name="ban" id="1C">
+        <label for="1C">1C</label>
+        <hr>
+        <input type="text" id="text1">
+        <label for="text1">이름</label>
+        <input type="password" id="pw1">
+        <label for="pw1">학년</label>
+        <input type="number" id="num1">
+        <label for="num1">학과</label>
+    </form>
+    <button id="bt1">bt1</button>
+
+    <hr>
+    <h3>p341</h3>
+    <style>
+        #p341 ul {
+            list-style: none;
+        }
+        #p341 li {
+            line-height: 50px;
+        }
+        #p341 input:checked + label {
+            color: red;
+        }
+    </style>
+    <fieldset id="p341">
+        <legend>객실 형태</legend>
+        <ul>
+            <li>
+                <input type="radio" name="room" id="basic">
+                <label for="basic">기본형(최대 2인)</label>
+            </li>
+            <li>
+                <input type="radio" name="room" id="family">
+                <label for="family">가족형(최대 8인)</label>
+            </li>
+        </ul>
+    </fieldset>
+    <hr>
+    <h3>가상 클래스</h3>
+    <style>
+        #body p:last-child {
+            font-size: 30px;
+            color: red;
+        }
+
+        #body div {
+            border: 1px solid blue;
+        }
+        
+        #body p {
+        }
+        
+        #body p:nth-child(2n+1) {
+            background-color: gold;
+        }
+        
+    </style>
+        
+    <div id="body">
+        <p>p1</p>
+        <p>p2</p>
+        <div>
+            <p>p3</p>
+            <p>p4</p>
+            <b>bbbbb</b>
+        </div>
+        <i>이탤릭</i>
+        <p>p5</p>
+        <p>p6</p>
+        <p>p7</p>
+    </div>
+
+
+</body>
+</html>

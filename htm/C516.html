@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: auto;
+            max-width: 720px;
+        }
+
+        h1 {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 20px;
+        }
+
+        .wrap {
+
+            --color: rgba(239, 129, 243, 0.393);
+            background: repeating-linear-gradient(315deg, transparent, transparent 5%, var(--color) 5%, var(--color) 10%);
+
+            margin: auto;
+            margin-top: 4%;
+            margin-bottom: 8%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: auto;
+            grid-template-areas: 
+                "a b"
+                "a c"
+                "d c"
+                "d ."
+            ;
+
+            grid-column-gap: 4%;
+            border: solid 2px red;
+            
+            padding: 5%;
+        }
+
+        img {
+            border-radius: 45px;
+            border: solid 12px white;
+            box-shadow: 0px 0px 5px 1px rgb(125, 125, 125);
+
+            width: 100%;
+            margin-bottom: 8%;
+        }
+
+        .grad {
+            width: 100%;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: auto;
+            grid-gap: 1%;
+        }
+
+        .grad div{
+            display: inline-block;
+            width: 100%;
+            aspect-ratio: 1.5;
+        }
+        
+        #div1 {
+            background: linear-gradient(to right bottom, blue, white);
+        }
+
+        #div2 {
+            background: linear-gradient(to right top, blue, red);
+        }
+
+        #div3 {
+            background: linear-gradient(to bottom, green, yellow);
+        }
+
+        #div4 {
+            background: radial-gradient(ellipse, green, red, yellow);
+        }
+        
+        #div5 {
+            background: radial-gradient(circle, green, yellow, red);
+        }
+        
+        #div6 {
+            background: radial-gradient(ellipse at 20% 20%, green, yellow, red);
+        }
+
+        #div7 {
+            background: repeating-linear-gradient(yellow, red 10%);
+        }
+
+        #div8 {
+            background: repeating-radial-gradient(circle, white, #3ccc 4%);
+        }
+    </style>
+</head>
+<body>
+    <h1>Gradient</h1>
+    <div class="grad">
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div id="div3"></div>
+        <div id="div4"></div>
+        <div id="div5"></div>
+        <div id="div6"></div>
+        <div id="div7"></div>
+        <div id="div8"></div>
+    </div>
+
+    <div class="wrap">
+        <img style="grid-area:a;" src="https://e1.pxfuel.com/desktop-wallpaper/909/733/desktop-wallpaper-%E3%82%AD%E3%83%A3%E3%83%AD%E3%83%AB-zutomayo-study-me-thumbnail.jpg" alt="">
+        <img style="grid-area:b;" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bcbff0bb-c60a-43c1-90ee-3a56152992b6/df7cfgq-c126a21b-10cd-41b5-afd8-19d319390280.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2JjYmZmMGJiLWM2MGEtNDNjMS05MGVlLTNhNTYxNTI5OTJiNlwvZGY3Y2ZncS1jMTI2YTIxYi0xMGNkLTQxYjUtYWZkOC0xOWQzMTkzOTAyODAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Xs10Rnm7LEzTnLzt6-zLPzT-lBTWyqBGEutoI0L9KhI" alt="">
+        <img style="grid-area:c;" src="https://cdn.myanimelist.net/images/voiceactors/1/62320.jpg" alt="">
+        <img style="grid-area:d;" src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx155884-de56FQIRJbYQ.png" alt="">
+
+    </div>
+
+    <style>
+        .selc {
+            width: 100%;
+        }
+
+        .selc div {
+            width: 100%;
+            aspect-ratio: 4;
+            border: 3px solid blue;
+
+            padding: 2%;
+        }
+
+        p {
+            border: 1px dotted blue;
+            width: 50%;
+        }
+
+        div p {
+            font-size: 32px;
+            color: red;
+        }
+        #d1 {
+            border: 3px solid red;
+            
+        }
+
+        #d2 {
+            
+        }
+
+        #d3 {
+            
+        }
+
+        #p1 + p{
+            font-size: 50px;
+        }
+    </style>
+
+    <h1>Selector</h1>
+
+    <div class="selc">
+
+        <div id="d1">
+            <p id="p1">p1</p>
+            <p>p2</p>
+            <hr>
+            <b>진하게</b>Lorem, ipsum dolor.
+            <div id="d1_1">#d1의 1번째 자식</div>
+            <div id="d2_2">#d1의 2번째 자식</div>
+        </div>
+        <div id="d2">
+            <p>d2 안에 p</p>
+        </div>
+        <div id="d3">
+            <p>d2 안에 p</p>
+        </div>
+    </div>
+        
+</body>
+</html>

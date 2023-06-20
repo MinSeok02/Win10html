@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/scrollbar.css"> 
+    <title>C4_12</title>
+    <style>
+
+        p, div {
+            font-size: 2em;
+            border: 1px solid blue;
+        }
+
+        #u1 {
+            font-size: 0.5em;
+            color: #ff0000;
+            font-weight: bolder;
+        }
+
+        .p {
+            background-color: cyan;
+        }
+
+        p.p {
+            width: 50%;
+        }
+
+        p.p:hover {
+            color: blue;
+            background-color: gold;
+            font-size: 50px;
+        }
+
+        div {
+            color: red;
+            font-weight: bolder;
+            font-style: oblique;
+            height: 100px;
+            display: inline;
+        }
+        
+        #div1:hover {
+            color: blue;
+            background-color: gold;
+            font-size: 50px;
+        }
+
+        table {
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: cyan;
+        }
+
+        tr:nth-child(3) {
+            background-color: rgb(177, 177, 255);
+        }
+
+        tr:nth-child(5) {
+            background-color: pink;
+        }
+
+        #h1 {
+            text-decoration: line-through;
+            text-transform: uppercase;
+            word-spacing: -2em;
+        }
+
+        #h2 {
+            text-decoration: underline dotted;
+            text-transform: capitalize;
+            letter-spacing: 0.4em;
+        }
+
+        pre {
+            line-height: 2em;
+        }
+
+        li {
+            font-size: 2em;
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <p class="p">p <u id="u1">underline</u>태그  ppppp</p>
+    <p class="p">p 태그  ppppp</p>
+    <p>class 없는 p 태그  ppppp</p>
+    <p class="p">p 태그  ppppp</p>
+    <div id = 'div1'>div 태그 div</div>
+    <div id = 'div2' class="p">div 태그 div</div>
+
+    <table>
+        <tr>
+            <th>용도</th>
+            <th>중량</th>
+            <th>개수</th>
+            <th>가격</th>
+        </tr>
+        <tr>
+            <td rowspan="2">선물용</td>
+            <td>3kg</td>
+            <td>11~16과</td>
+            <td>35,000원</td>
+        </tr>
+        <tr>
+            <td>5kg</td>
+            <td>18~26과</td>
+            <td>52,000원</td>
+        </tr>
+        <tr>
+            <td rowspan="2">가정용</td>
+            <td>3kg</td>
+            <td>11~16과</td>
+            <td>30,000원</td>
+        </tr>
+        <tr>
+            <td>5kg</td>
+            <td>18~26과</td>
+            <td>47,000원</td>
+        </tr>
+    </table>
+
+    <h2 id='h1'>text decoration</h2>
+    <h2 id='h2'>text decoration</h2>
+    <pre>
+        
+        asdjflkasjdlkjflaksjdlfkjaskdf
+        sadkfjlkasjdflkjasldfjlaskjdflkjaslkdf
+        asdfljasdfsdafsadfasdkfjlsakdjflkjasdlfj
+        faskdlfjlaskjdfljasldjkflaskjdfkjasdlkjf
+        asdkjflkjasdlkfjlaskjdflkjaslkdjflkasjdf
+        kasdjfkljasdlfkjlaksdjflkjasdlkfjlaskdjf
+    </pre>
+    
+    <ul>
+        <li><a href="https://www.naver.com" target="_black">NAVER</a></li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+    </ul>
+
+    <style>
+        #qu {
+            list-style-type: none;
+            font-size: 8px;
+        }
+        #qu b {
+            font-size: 20px;
+            color: #ad3000;
+        }
+
+        #qu li {
+            line-height: 2em;
+        }
+    </style>
+
+    <hr>
+    <h1 id="qh">최신 웹 디자인 트렌드</h1>
+    <ul id="qu">
+        <li><b>반응형 웹 디자인</b> - 다양한 화면 크기에 최적화하다.</li>
+        <li><b>플랫 디자인</b> - 입체에서 평면으로</li>
+        <li><b>풀 스크린 배경</b> - 콘텐츠에 집중</li>
+        <li><b>원 페이지 사이트</b> - 한 페이지에 모든 내용을 담다</li>
+        <li><b>패럴랙스 스크롤링</b> - 동적인 효과로 강한 인상을!</li>
+        <li><b>웹 폰트</b> - 웹 타이포그래피를 받쳐 주는 기술</li>
+    </ul>
+
+    <hr>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 10px;
+            border: solid 1px balck;
+            background-color: white;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        caption {
+            caption-side: bottom;
+        }
+    </style>
+
+    <table id="q2">
+        <caption>
+            2019 국민 독서실태
+        </caption>
+        <tr>
+            <th>구분</th>
+            <th>성인</th>
+            <th>독서자</th>
+        </tr>
+        <tr>
+            <th>종이책</th>
+            <td>6.1권</td>
+            <td>11.8권</td>
+        </tr>
+        <tr>
+            <th>전자책</th>
+            <td>1.2권</td>
+            <td>7.1권</td>
+        </tr>
+        <tr>
+            <th>오디오북</th>
+            <td>0.2권</td>
+            <td>5.5권</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <style>
+        #h {
+            text-shadow: 4px -4px 2px red;
+        }
+    </style>
+    <h1 id="h">MMMM</h1>
+</body>
+</html>

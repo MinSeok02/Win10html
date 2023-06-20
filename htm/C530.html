@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .box {
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            border: solid 1px black;
+            transition-property: width, height, transform;
+            transition-duration: 2s, 1s, 0.5s;
+        }
+        
+        .box:hover {
+            width: 200px;
+            height: 120px;
+            transform: rotate(30deg);
+        }
+    </style>
+
+    <div class="box"></div>
+
+    <style>
+        #name {
+            text-align: center;
+            transition-property: transform;
+            transition-duration: 2s;
+        }
+        #name:hover {
+            transform: rotate(270deg);
+        }
+    </style>
+    <h1 id="name">강민석</h1>
+
+    <style>
+        .box1 {
+            width: 100px;
+            height: 100px;
+            border: solid 1px black;
+            background-color: green;
+            margin: 10px auto;
+            animation-name: shape;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes shape {
+            from {
+                
+            }
+
+            40% {
+                border-radius: 50px;
+            }
+            to {
+                border: 4px solid black;
+                background-color: gold;
+                border-radius: 50px;
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <div class="box1"></div>
+
+    <style>
+        .doge {
+
+            position: absolute;
+            
+            top: 50%;
+            left: 30%;
+
+            background-image: url('https://www.maybugs.com/news/photo/201803/570094_400072_5126.jpg');
+            background-size: cover;
+
+            --size: 200px;
+            width: var(--size);
+            aspect-ratio: 1/1;
+
+            border: solid 2px black;
+            border-radius: 50%;
+
+            animation-name: spin; 
+            animation-iteration-count: infinite;
+            animation-duration: 1s;
+            animation-delay: 0s;
+        }
+
+        @keyframes spin {
+            from{
+                transform:  rotateY(0deg);
+            }
+            to {
+                transform:  rotateY(360deg);
+            }
+        }
+    </style>
+
+    <div class="doge"></div>
+</body>
+</html>

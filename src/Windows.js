@@ -25,30 +25,71 @@ A(document.body, [ document.Windows10 ]);
  */
 
 /**********************************************************/
-let desk = document.resource.desktop; 
-
-desk.addIcon({type: browser, x:1, y:5, name:'Icon', img_src:'./img/edge.png', src:"http://n4082n.dothome.co.kr"});
 
 let stup = document.resource.startup;
 stup.addGroup('생산성');
-stup.addStupBtn('./img/edge.png');
-stup.addStupBtn('./img/html.png');
-stup.addStupBtn('./img/html.png');
+stup.addStupBtn('./img/edge.png', 'Microsoft Edge');
 
-stup.addList('2주차');
-stup.addList('23.03.15 : list', './img/html.png');
+let cls = [
+  { date: '315', desc: 'html_list', week: 2 },
+  { date: '321', desc: 'html_table', week: 3 },
+  { date: '328', desc: 'html_link', week: 4 },
+  { date: '329', desc: 'css', week: 4 },
+  { date: '404', desc: 'html_form', week: 5 },
+  { date: '405', desc: 'css', week: 5 },
+  { date: '411', desc: 'css', week: 6 },
+  { date: '412', desc: 'css', week: 6 },
+  { date: '502', desc: 'css', week: 9 },
+  { date: '503', desc: 'css', week: 9 },
+  { date: '510', desc: 'css', week: 10},
+  { date: '516', desc: 'css', week: 11},
+  { date: '517', desc: 'css', week: 11},
+  { date: '523', desc: 'css', week: 12},
+  { date: '524', desc: 'css', week: 13},
+  { date: '531', desc: 'css', week: 13},
+  { date: '607', desc: 'javascript', week: 14},
+  { date: '615', desc: 'javascript', week: 15},
+]
 
-stup.addList('3주차');
-stup.addList('23.03.21 : Table', './img/html.png');
+let week = 1; 
+for(let htm of cls) {
+  if ( week < htm.week ) {
+    stup.addList('&nbsp;&nbsp;' + htm.week + '주차');
+    week = htm.week ; 
+  } 
 
-stup.addList('4주차');
-stup.addList('23.03.28 : Table', './img/html.png');
-stup.addList('23.03.29 : Table', './img/html.png');
+  stup.addList(`230${htm.date}_${htm.desc}`, './img/html.png', {
+    type: browser, 
+    src:`./htm/C${htm.date}.html`,
+    img_src:'./img/edge.png', 
+    title: htm.desc
+  });
+}
 
-stup.addList('4주차');
-stup.addList('23.03.28 : Table', './img/html.png');
-stup.addList('23.03.29 : Table', './img/html.png');
+let desk = document.resource.desktop; 
+let row = 1, col = 1; 
+week = 1; 
+let nth = 1; 
+for(let htm of cls) {
+  if( row > 8 ) {  row = 1; col++;  }
 
-stup.addList('4주차');
-stup.addList('23.03.28 : Table', './img/html.png');
-stup.addList('23.03.29 : Table', './img/html.png');
+  if ( week < htm.week ) {
+    nth = 1;
+  } else if ( week == htm.week ) {
+    nth = 2; 
+  }
+
+  desk.addIcon({
+    type: browser, 
+    x: col, y: row, 
+    name: `${htm.week}주차(${nth})`,
+    img_src:'./img/edge.png', 
+    src:`./htm/C${htm.date}.html`,
+    title: htm.desc
+  });
+
+  row++;
+  week = htm.week;
+  console.log(week)
+}
+

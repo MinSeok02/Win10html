@@ -5,6 +5,8 @@ class WinPool {
     }
 
     createWindow(info) {
+        if (!info) return;
+
         let window = C('win-class');
         document.Windows10.appendChild(window);
         
@@ -22,7 +24,7 @@ class WinPool {
             this.swap_focus(window); 
         }
 
-        window.program.newtab('./test.html');
+        window.program.newtab(info.src, info.title);
 
         
         window.task = document.resource.taskbar.addTask(info);
@@ -40,7 +42,7 @@ class WinPool {
         target.wind.cover.style.display = "none";
 
         this.focus.wind.cover.style.display = "block";
-        this.focus.wind.style.zIndex = ''; 
+        this.focus.wind.style.zIndex = '10'; 
         this.focus = target; 
     }
 }
@@ -148,7 +150,7 @@ class Window extends HTMLElement {
     }
 
     minimize() {
-        this.wind.style.display = 'none';
+        // this.wind.style.display = 'none';
     }
 
     resize(event) {

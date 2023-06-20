@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        html {
+            background-color: white;
+        }
+        body {
+            width: 600px;
+            margin: auto;
+            border: solid 2px red;
+            background-color: rgb(236, 236, 236);
+            padding-bottom: 10%;
+        }
+
+        section {
+            width: 80%;
+            margin: auto;
+        }
+
+        section p {
+            width: 100%;
+            padding: 2%;
+            background-color: #fff;
+            border: 1px solid #222;
+        }
+
+        h1 + p {
+            background-color: #222;
+            color: white;
+        }
+    </style>
+
+    <section>
+        <h1>예약 방법 & 이용 요금</h1>
+        <p>아직 온라인 예약 신청이 준비되어 있지 않습니다. <br>전화(xxx-xxxx-xxxx)로 문의 바랍니다.</p>
+        <p>가족실(2~4인) : 60,000원/일</p>
+        <p>도미토리(4인 공용) : 25,000원/일</p>
+    </section>
+
+    <style>
+
+        #login {
+            background-color: white;
+            border: solid 1px black;
+            border-radius: 4px;
+            padding: 3% 2%;
+            width: 90%;
+            margin: 10% auto;
+            padding-bottom: 10%;
+        }    
+        
+        #login legend {
+            font-weight: bold;
+        }
+
+        #login button {
+            display: block;
+            margin: auto;
+            border-radius: 50px;
+            height: 100%;
+            font-size: 18px;
+            padding: 0 4%;
+        }
+
+        #login button:hover {
+            background-color: #222;
+            color: white;
+        }
+
+        #login fieldset {
+            padding: 0;
+            border: 1px solid rgb(216, 216, 216);
+        }
+
+        #login ul {
+            list-style: none;
+            padding: 0 2%;
+
+        }
+
+        #login ul > li {
+            font-size: 14px;
+            line-height: 42px;
+            width: 100%;
+        }
+    
+        #login ul > li > label {
+            display: inline-block;
+            width: 30%;
+            }
+
+        #login ul > li > input {
+            width: 40%;
+        }
+    </style>
+
+    <form id="login" action="">
+        <fieldset>
+            <legend>로그인 정보</legend>
+            <ul>
+                <li><label for="f1">아이디</label><input type="text" id="f1"></li>
+                <li><label for="f2">비밀번호</label><input type="text" id="f2"></li>
+                <li><label for="f3">비밀번호 확인</label><input type="text" id="f3"></li>
+                <li><label for="f4">회원 등급</label><input type="text" id="f4" value="준회원"></li>
+            </ul>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>개인 정보</legend>
+            <ul>
+                <li><label for="f1">이름</label><input type="text" id="f1" placeholder="5자미만 공백없이"></li>
+                <li><label for="f2">메일 주소</label><input type="email" id="f2" placeholder="abcd@domain.com"></li>
+                <li><label for="f3">연락처</label><input type="phone" id="f3"></li>
+            </ul>
+        </fieldset>
+        <br>
+        <fieldset>
+            <button>제출</button>
+        </fieldset>
+    </form>
+
+    <style>
+        a {
+            display: block;
+            color: white;
+            width: 50%;
+            margin: auto;
+        }
+        a[target='_blank'] {
+            background-color: red;
+        }
+
+        a[target='_self'] {
+            background-color: blue;
+        }
+
+    </style>
+    
+    <a href="https://www.naver.com/" target="_self">Naver</a>
+    <a href="https://www.daum.net/" target="_blank">Daum</a>
+</body>
+</html>

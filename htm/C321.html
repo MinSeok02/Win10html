@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/scrollbar.css"> 
+    <title>Table</title>
+    <style>
+        /* 
+        td {
+            width: 60px;
+            text-align: center;
+            font-size: 20px;
+        }
+        th {
+            font-size: 20px;
+            color: blue;
+            text-align: center;
+        } */
+
+        .plan {
+            margin: auto;
+            text-align: center;
+            border-collapse: collapse;
+            border: solid 2px black;
+            font-size: 25px;
+
+            /* background-image: url('./pepe.jpg'); */
+        }
+
+        .plan th, 
+        .plan td {
+            border: 1px solid black;
+        }
+
+        .plan tr td:first-child {
+            background-color: rgba(92, 92, 92, 0.598);
+        }
+
+
+        .plan th:first-child, 
+        .plan td:first-child {
+            border-right: solid 3px black;
+        }
+
+        .plan tr {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 80px;
+        }
+        .plan tr:nth-child(1) {
+            background-color: rgba(92, 92, 92, 0.598);
+            border-bottom: solid 3px black;
+            height: 40px;
+        }
+
+        .colr_computer {
+            background-color: rgba(248, 63, 63, 0.559);
+        }
+
+        .colr_linux {
+            background-color: rgba(103, 243, 239, 0.69);
+        }
+
+        .colr_statistic {
+            background-color: rgba(95, 239, 150, 0.698);
+
+
+        }
+
+        .colr_solve {
+            background-color: rgba(203, 79, 231, 0.69);
+
+        }
+
+        .colr_english {
+            background-color: rgba(234, 80, 190, 0.66);
+
+        }
+
+        .colr_ai {
+            background-color: rgba(75, 130, 238, 0.718);
+
+        }
+
+        .colr_html {
+            background-color: rgba(235, 16, 67, 0.613);
+
+        }
+
+        #pepe {
+            
+            position: absolute;
+            opacity: 0.4;
+            top: 225px;
+            width: 510px;
+            z-index: -1;
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- <table>
+        <caption><h1>표의 제목</h1></caption>
+        <tr>
+            <th>순번</th>
+            <th>교과목</th>
+            <th>학점</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td rowspan="2">2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Naver</td>
+        </tr>
+    </table> -->
+    
+    <table class="plan">
+        <caption>
+            <h3>2023년 1학기 시간표</h3>
+        </caption>
+        <tr>
+            <th style="width:40px;">
+                <img id="pepe" src="../img/pepe.jpg">
+            </th>
+            <th style="width:100px;">Mun</th>
+            <th style="width:100px;">Tue</th>
+            <th style="width:100px;">Wed</th>
+            <th style="width:100px;">Thu</th>
+            <th style="width:100px;">Fir</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td class="colr_computer" rowspan="4">컴퓨터<br>일반</td>
+            <td class="colr_linux" rowspan="2">리눅스<br>실습</td>
+            <td class="colr_html" rowspan="2">HTML5<br>/CSS</td>
+
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td></td>
+            <td class="colr_linux" rowspan="2">리눅스<br>실습</td>
+            <td></td>
+            <td class="colr_solve" rowspan="2">창의융합적문제해결</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td></td>
+            <td class="colr_html" rowspan="2">HTML5<br>/CSS</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td class="colr_statistic" rowspan="2">기초통계학</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td class="colr_english" rowspan="2">영어</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td class="colr_ai">AI개론</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- <a href="https://www.yc.ac.kr/">링크</a> -->
+</body>
+</html>

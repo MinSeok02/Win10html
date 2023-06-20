@@ -54,19 +54,26 @@ class StartUp extends HTMLElement {
         A(this.li[2], [C('div', { class:'group' },[ slot, C('div', { class:'content'})]) ]);
     }
 
-    addStupBtn(icon_src = null) {
+    addStupBtn(icon_src = null, title = '') {
 
         let btn = C('div', {class:'btn'}); 
-        let img = C('img', {class:'icon', src:icon_src}); 
-        btn.appendChild(img); 
+        let img = C('img', {class:'icon', src:icon_src});
+        let name = C('p',  {class:'name'}); 
+        name.textContent = title; 
+        A(btn, [img, name]); 
 
         let content = this.li[2].getElementsByClassName('content');
         content[content.length - 1].appendChild(btn);
     }
 
-    addList(txt, icon_src = null) {
+    addList(txt, icon_src = null, info = null) {
         let text = C('p', { class:'list' });
         
+        text.onclick = ()=>{ 
+            this.show();
+            document.resource.winpool.createWindow(info);
+        }; 
+
         if( icon_src ) {
             let icon = C('img', { class: 'icon', src: icon_src });
             text.appendChild(icon);

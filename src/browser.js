@@ -18,20 +18,24 @@ export class browser {
     this.search_input = C('input', { type: 'text'});
     A(this.search, [this.search_info, this.search_input]);
 
-    A(this.mani, [this.back, this.front, this.refresh, this.home, this.search, this.etc]);
+    this.open_new_tab = C('a', { class: 'open_new_tab', target:'_blank', href: window.info.src }); 
+    this.open_new_tab.textContent = '새 창으로 열기'; 
+    
+    A(this.mani, [this.back, this.front, this.refresh, this.home, this.search, this.open_new_tab, this.etc]);
   }
 
-  newtab(src) {
+  newtab(src, title = '') {
     this.iframe.src = src; 
+
+    let titl = C('p'); titl.textContent = title;
     let tab  = C('div', { class: 'tab' }, 
     [ 
-      C('div', { class: 'shadow_cleaner'})
+      titl,
+      C('div', { class: 'shadow_cleaner'}),
+      
     ]);
 
-    let title = C('p'); title.innerHTML = src; 
-    tab.appendChild(title); 
-
-    this.tabs.appendChild(tab);
+    A(this.tabs, [tab]); 
     this.search_input.value = src;
   }
 }

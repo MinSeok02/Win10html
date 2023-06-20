@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        .transform {
+            padding: 5%;
+            width: 60%;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: auto;
+            grid-gap: 5%;
+
+            margin: auto;
+            margin-bottom: 80px;
+        }
+
+        .container {
+            position: sticky;
+            display: inline-block;
+            border: solid 2px red;
+            
+            aspect-ratio: 1 / 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+ 
+        .container div {
+            display: inline-block;
+            width: 85%;
+            height: 85%;
+            background-color: rgba(255, 166, 0, 0.6);
+            
+            border: solid 1px black;
+            z-index: 1;
+        }
+
+        .container > p {
+            width: 100%;
+            position: absolute;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        #movex:hover {
+            transform: translateX(50px);
+        }
+        #movey:hover {
+            transform: translateY(20px);
+        }
+        #movexy:hover {
+            transform: translate(10px, 20px);
+        }
+    </style>
+    
+    <style>
+        #scaleX:hover {
+            transform: scaleX(2);
+        }
+
+        #scaleY:hover {
+            transform: scaleY(1.5);
+        }
+
+        #scale:hover {
+            transform: scale(0.7);
+        }
+    </style>
+
+    <style>
+        #rotateX:hover {
+            transform: rotateX(55deg);
+        }
+
+        #rotateY:hover {
+            transform: rotateY(55deg);
+        }
+
+        #rotateZ:hover {
+            transform: rotateZ(55deg);
+        }
+    </style>
+
+    <style>
+        #skewX:hover {
+            transform: skewX(30deg);
+        }
+
+        #skewY:hover {
+            transform: skewY(15deg);
+        }
+
+        #skew:hover {
+            transform: skew(-25deg, -15deg);
+        }
+    </style>
+
+    <div class="transform">
+
+        <div class="container">
+            <p>moveX</p>
+            <div id="movex"></div>
+        </div>
+        
+        <div class="container">
+            <p>moveY</p>
+            <div id="movey"></div>
+        </div>
+        
+        <div class="container">
+            <p>moveXY</p>
+            <div id="movexy"></div>
+        </div>
+        
+        <div class="container">
+            <p>scaleX</p>
+            <div id="scaleX"></div>
+        </div>
+        
+        <div class="container">
+            <p>scaleY</p>
+            <div id="scaleY"></div>
+        </div>
+        
+        <div class="container">
+            <p>scale</p>
+            <div id="scale"></div>
+        </div>
+        
+        <div class="container">
+            <p>rotateX</p>
+            <div id="rotateX"></div>
+        </div>
+        
+        <div class="container">
+            <p>rotateY</p>
+            <div id="rotateY"></div>
+        </div>
+        
+        <div class="container">
+            <p>rotateZ</p>
+            <div id="rotateZ"></div>
+        </div>
+        
+        <div class="container">
+            <p>skewX</p>
+            <div id="skewX"></div>
+        </div>
+        
+        <div class="container">
+            <p>skewY</p>
+            <div id="skewY"></div>
+        </div>
+        
+        <div class="container">
+            <p>skew</p>
+            <div id="skew"></div>
+        </div>
+    
+    </div>
+
+
+
+    
+</body>
+</html>

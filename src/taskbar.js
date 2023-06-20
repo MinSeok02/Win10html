@@ -65,6 +65,8 @@ class task {
     constructor(info) {
         this.root = document.resource.taskbar; 
 
+        console.log(info); 
+        
         this.me = C('div', 
             { class: 'task' }, 
             [ C('img', { src: info.img_src, style: 'height: 60%;'})]

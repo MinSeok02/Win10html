@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .wrap {
+            position: sticky;
+
+            display: block;
+            background-color: white;
+            margin: 0 auto;
+            
+            width: 720px;
+            height: 100%;
+
+            border: none;
+
+        }
+
+        .box {
+            margin: 0;
+            display: inline-block;
+            border: dotted 1px red;
+            font-size: 20px;
+        }
+
+        img { 
+            width: 200px;
+        }
+
+        .article { 
+            border: solid 1px gray;
+            width: 200px;
+
+            padding: 10px;
+        }
+
+        #a {
+            position: absolute;
+
+            top: 250px;
+            left: 50px;
+            background-color: red;
+        }
+
+        #b {
+            position: fixed;
+            top: 50%;
+            right: 100px;
+            background-color: green;
+        }
+
+        #c {
+            position: absolute;
+
+            bottom: 50px;
+            left: 100px;
+            background-color: yellow;
+        }
+    </style>
+
+    <div class="wrap">
+        <img src="https://cdn.pixabay.com/photo/2023/04/04/00/51/sunset-7898136_960_720.jpg" alt="">
+        <img src="https://cdn.pixabay.com/photo/2023/04/28/05/43/lemur-7955891_960_720.jpg" alt="">
+        <img src="https://media.istockphoto.com/id/1155613380/ko/%EC%82%AC%EC%A7%84/%EC%9E%90%EC%97%B0%EA%B3%BC-%EA%B8%B0%EC%88%A0%EC%9D%84-%EC%99%84%EB%B2%BD-%ED%95%98-%EA%B2%8C-%EA%B3%B5%EC%A1%B4.jpg?s=612x612&w=0&k=20&c=3pfOwFe54LngWMY3c4yUytVtYoMPTTGeE2K0hhrBtJ4=" alt="">
+        <br>
+        <div class="box">div1</div>
+        <div class="box">div2</div>
+        <div class="box">div3</div>
+        <br><br>
+        <hr>
+
+        <div class="article" id="a">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio, sequi. Provident maxime earum deleniti animi est officiis a aliquam ratione illo voluptas! Quibusdam exercitationem aut culpa vel in sed iure?
+        </div>
+        <div class="article" id="b">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa dolor reprehenderit quam distinctio consectetur vitae totam provident velit beatae consequatur possimus eaque sint illum, laborum nisi, aperiam quisquam hic perferendis?
+        </div>
+        <div class="article" id="c">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo dolorum maiores eveniet possimus
+        </div>
+
+    </div>
+    
+
+    
+</body>
+</html>

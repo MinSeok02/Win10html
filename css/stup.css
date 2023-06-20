@@ -117,7 +117,7 @@
 }
 
 .list > .icon {
-    height: 100%;
+    height: 90%;
     display: inline-block;
 }
 
@@ -182,9 +182,7 @@
     aspect-ratio: 1/1;
     background-color: var(--btn-bg);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: sticky;
 
     border-style: solid;
     border-width: min(0.375vh, 0.6vw);
@@ -196,7 +194,21 @@
 }
 
 .group > .content > .btn > .icon {
-    width: 90%;
+    position: absolute;
+    margin: auto;
+    top: 32.5%;
+    left: 32.5%;
+    width: 35%;
+}
+
+.group > .content > .btn > p {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+
+    font-size: min(1vh, calc(1vw / 1.7));
+    color: white;
+
 }
 /***********************************************/
 

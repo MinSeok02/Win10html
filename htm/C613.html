@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+        }
+        .box {
+            display: inline-block;
+            border: solid 1px red;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <div id="div1" onclick="f1()" class="box"></div>
+    <div id="div2" onclick="f2()" class="box"></div>
+    <div id="div3" onclick="f3()" class="box"></div>
+
+    <script>
+        var div1 = document.getElementById('div1');
+        var div2 = document.getElementById('div2');
+        var div3 = document.getElementById('div3');
+        function f1() {
+            div1.style.backgroundColor = 'pink';
+            div1.style.borderRadius = '50%';
+            document.body.style.backgroundColor = 'black'; 
+        }
+        function f2() {
+            div2.style.backgroundColor = 'pink';
+            div2.style.borderRadius = '50%';
+            document.body.style.backgroundColor = 'black'; 
+        }
+        function f3() {
+            div3.style.backgroundColor = 'pink';
+            div3.style.borderRadius = '50%';
+            document.body.style.backgroundColor = 'black'; 
+        }
+    </script>
+
+    <hr>
+    
+    <button>버튼클릭1</button>
+    <span>...</span>
+    <button>버튼클릭2</button>
+
+    <style>
+        .box2 {
+            width: 200px;
+            height: 200px;
+            border: solid 2px red;
+            margin-top: 5px;
+        }
+    </style>
+    <div class="box2"></div>
+</body>
+</html>
